@@ -1,0 +1,1087 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Révisions STAPS L2 — carnet de révisions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF6EC;
+    --paper-2:#FFFDF7;
+    --ink:#2A2D34;
+    --ink-soft:#5A5E68;
+    --line:#E2DAC7;
+    --grow:#2F8C5B;      /* croissance */
+    --grow-bg:#E6F2EA;
+    --effort:#D9532C;    /* effort / physio */
+    --effort-bg:#FBE8E0;
+    --body-c:#7558A6;    /* composition corporelle */
+    --body-bg:#ECE5F4;
+    --o2:#2E6F9E;        /* accent oxygène */
+    --ink-archive:#B5832E; /* sciences sociales */
+    --archive-bg:#F6ECD6;
+    --good:#2F8C5B;
+    --bad:#C4392B;
+    --r:14px;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Atkinson Hyperlegible",system-ui,sans-serif;
+    font-size:18px;line-height:1.65;
+    padding:0 0 80px;
+  }
+  .wrap{max-width:880px;margin:0 auto;padding:0 20px}
+  .eyebrow{
+    font-family:"Space Mono",monospace;font-weight:700;
+    text-transform:uppercase;letter-spacing:.18em;font-size:.72rem;
+    color:var(--ink-soft);
+  }
+  /* ---------- header ---------- */
+  header{padding:46px 0 26px;border-bottom:3px solid var(--ink)}
+  header .eyebrow{color:var(--o2)}
+  h1{font-size:2.1rem;line-height:1.15;margin:.35em 0 .2em;font-weight:700}
+  header p{margin:.2em 0 0;color:var(--ink-soft);max-width:60ch}
+  .tag{
+    display:inline-block;font-family:"Space Mono",monospace;font-size:.7rem;
+    text-transform:uppercase;letter-spacing:.1em;background:var(--ink);color:var(--paper);
+    padding:3px 9px;border-radius:20px;margin-top:14px;
+  }
+  /* ---------- tabs ---------- */
+  nav{position:sticky;top:0;z-index:30;background:var(--paper);
+      border-bottom:1px solid var(--line);padding:10px 0;margin-bottom:8px}
+  .tabs{display:flex;gap:8px;flex-wrap:wrap}
+  .tab{
+    font-family:"Space Mono",monospace;font-size:.78rem;font-weight:700;
+    text-transform:uppercase;letter-spacing:.05em;cursor:pointer;
+    border:2px solid var(--ink);background:var(--paper-2);color:var(--ink);
+    padding:9px 14px;border-radius:30px;transition:.15s;
+  }
+  .tab:hover{background:var(--line)}
+  .tab[a-current="true"]{background:var(--ink);color:var(--paper)}
+  .tab:focus-visible{outline:3px solid var(--o2);outline-offset:2px}
+  /* ---------- panels ---------- */
+  .panel{display:none;padding-top:18px}
+  .panel.on{display:block;animation:fade .25s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  section.block{margin:14px 0 30px;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:var(--paper-2)}
+  .block-head{display:flex;align-items:baseline;gap:12px;padding:16px 20px;border-bottom:1px solid var(--line)}
+  .block-head .n{font-family:"Space Mono",monospace;font-weight:700;font-size:1.1rem}
+  .block-head h2{font-size:1.25rem;margin:0;font-weight:700}
+  .block-body{padding:20px}
+  .grow .block-head{background:var(--grow-bg);border-color:var(--grow)} .grow .n{color:var(--grow)}
+  .effort .block-head{background:var(--effort-bg);border-color:var(--effort)} .effort .n{color:var(--effort)}
+  .compo .block-head{background:var(--body-bg);border-color:var(--body-c)} .compo .n{color:var(--body-c)}
+  .archive .block-head{background:var(--archive-bg);border-color:var(--ink-archive)} .archive .n{color:var(--ink-archive)}
+  /* key list */
+  ul.keys{list-style:none;padding:0;margin:0}
+  ul.keys li{position:relative;padding:8px 0 8px 26px;border-bottom:1px dashed var(--line)}
+  ul.keys li:last-child{border-bottom:none}
+  ul.keys li::before{content:"";position:absolute;left:4px;top:16px;width:9px;height:9px;border-radius:2px;transform:rotate(45deg)}
+  .grow ul.keys li::before{background:var(--grow)}
+  .effort ul.keys li::before{background:var(--effort)}
+  .compo ul.keys li::before{background:var(--body-c)}
+  b.t{font-weight:700}
+  .subhead{font-family:"Space Mono",monospace;font-weight:700;font-size:.74rem;text-transform:uppercase;letter-spacing:.06em;margin:20px 0 6px;padding-top:14px;border-top:1px solid var(--line)}
+  .block-body > .subhead:first-child{border-top:none;padding-top:2px;margin-top:0}
+  .grow .subhead{color:var(--grow)} .effort .subhead{color:var(--effort)} .compo .subhead{color:var(--body-c)}
+  .formula{font-family:"Space Mono",monospace;background:var(--paper);border:1px dashed var(--ink-soft);
+           border-radius:8px;padding:4px 8px;display:inline-block;font-size:.95rem}
+  .svg-card{background:var(--paper);border-radius:10px;padding:14px;margin:6px 0 18px}
+  figcaption{font-family:"Space Mono",monospace;font-size:.72rem;text-transform:uppercase;
+             letter-spacing:.08em;color:var(--ink-soft);text-align:center;margin-top:6px}
+  svg{display:block;width:100%;height:auto}
+  /* piege box */
+  .piege{display:flex;gap:12px;align-items:flex-start;background:#FFF4DF;border:1px solid #E8C26B;
+         border-radius:10px;padding:12px 14px;margin-top:14px}
+  .piege .ico{font-weight:700;color:#B5832E;font-family:"Space Mono",monospace}
+  /* ---------- QCM ---------- */
+  .qcm-intro{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;margin-bottom:20px}
+  .setbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+  .setbar-label{font-family:"Space Mono",monospace;font-size:.74rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft)}
+  .setbtn{font-family:"Space Mono",monospace;font-weight:700;font-size:.85rem;cursor:pointer;border:2px solid var(--effort);background:var(--paper-2);color:var(--effort);width:40px;height:40px;border-radius:50%;transition:.15s}
+  .setbtn:hover{background:var(--effort-bg)}
+  .setbtn[aria-current="true"]{background:var(--effort);color:#fff}
+  .setbtn:focus-visible{outline:3px solid var(--o2);outline-offset:2px}
+  .setbar-hint{font-family:"Space Mono",monospace;font-size:.68rem;color:var(--ink-soft);flex:1;min-width:150px}
+  .scorebar{position:sticky;top:62px;z-index:20;display:flex;justify-content:space-between;align-items:center;
+            background:var(--ink);color:var(--paper);border-radius:30px;padding:10px 18px;margin-bottom:18px;
+            font-family:"Space Mono",monospace;font-size:.85rem}
+  .scorebar b{font-size:1.05rem}
+  .q{border:1px solid var(--line);border-radius:var(--r);background:var(--paper-2);margin-bottom:16px;overflow:hidden}
+  .q-head{padding:14px 18px;border-bottom:1px solid var(--line)}
+  .q-num{font-family:"Space Mono",monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-soft)}
+  .q-num .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle}
+  .q-text{font-weight:700;margin-top:4px}
+  .opts{padding:10px 18px}
+  .opt{display:flex;gap:10px;align-items:flex-start;padding:9px 10px;border:1px solid var(--line);
+       border-radius:10px;margin:8px 0;cursor:pointer;background:var(--paper);transition:.12s}
+  .opt:hover{border-color:var(--ink-soft)}
+  .opt input{margin-top:5px;width:18px;height:18px;flex:none;accent-color:var(--o2)}
+  .opt.right{background:#E9F5EE;border-color:var(--good)}
+  .opt.wrongpick{background:#FBE7E4;border-color:var(--bad)}
+  .opt.miss{background:#FFF4DF;border-color:#E8C26B}
+  .q-foot{padding:0 18px 16px}
+  .btn{font-family:"Space Mono",monospace;font-weight:700;text-transform:uppercase;letter-spacing:.05em;
+       cursor:pointer;border:2px solid var(--ink);border-radius:30px;padding:9px 16px;font-size:.78rem;
+       background:var(--ink);color:var(--paper);transition:.15s}
+  .btn:hover{opacity:.85}
+  .btn.ghost{background:transparent;color:var(--ink)}
+  .btn:focus-visible{outline:3px solid var(--o2);outline-offset:2px}
+  .verdict{margin-top:12px;padding:11px 14px;border-radius:10px;font-weight:700;display:none}
+  .verdict.show{display:block}
+  .verdict.ok{background:#E9F5EE;color:var(--good)}
+  .verdict.no{background:#FBE7E4;color:var(--bad)}
+  .explain{font-weight:400;color:var(--ink);margin-top:8px;font-size:.95rem}
+  /* ---------- history ---------- */
+  .hist-row{display:flex;align-items:center;gap:12px;padding:11px 4px;border-bottom:1px dashed var(--line)}
+  .hist-row:last-child{border-bottom:none}
+  .hist-set{flex:none;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+            font-family:"Space Mono",monospace;font-weight:700;font-size:.9rem;border:2px solid var(--effort);color:var(--effort);background:var(--effort-bg)}
+  .hist-when{font-family:"Space Mono",monospace;font-size:.74rem;color:var(--ink-soft)}
+  .hist-score{font-weight:700}
+  .hist-pct{margin-left:auto;font-family:"Space Mono",monospace;font-weight:700;font-size:1rem}
+  .hist-pct.good{color:var(--good)} .hist-pct.mid{color:var(--ink-archive)} .hist-pct.low{color:var(--bad)}
+  .hist-trend{font-family:"Space Mono",monospace;font-size:.72rem;margin-left:8px}
+  /* ---------- method ---------- */
+  .step{display:flex;gap:16px;margin:0 0 4px}
+  .step .rail{display:flex;flex-direction:column;align-items:center;flex:none}
+  .step .num{width:38px;height:38px;border-radius:50%;background:var(--ink-archive);color:#fff;
+             font-family:"Space Mono",monospace;font-weight:700;display:flex;align-items:center;justify-content:center}
+  .step .stem{width:2px;flex:1;background:var(--line);margin:4px 0}
+  .step:last-child .stem{display:none}
+  .step .content{padding-bottom:22px}
+  .step h3{margin:6px 0 4px;font-size:1.1rem}
+  .timebudget{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 4px}
+  .chip{font-family:"Space Mono",monospace;font-size:.74rem;background:var(--archive-bg);
+        border:1px solid var(--ink-archive);color:var(--ink-archive);border-radius:20px;padding:5px 11px}
+  .callout{background:var(--paper-2);border-left:4px solid var(--o2);border-radius:0 10px 10px 0;padding:12px 16px;margin:16px 0}
+  /* ---------- planning ---------- */
+  .principles{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 22px}
+  .principles .chip{background:var(--paper-2);border:1px solid var(--line);color:var(--ink)}
+  .week{border:1px solid var(--line);border-radius:var(--r);background:var(--paper-2);margin-bottom:20px;overflow:hidden}
+  .week-head{display:flex;align-items:baseline;gap:12px;padding:14px 20px;color:#fff}
+  .week-head .wn{font-family:"Space Mono",monospace;font-weight:700;font-size:.78rem;letter-spacing:.1em;
+                 background:rgba(255,255,255,.22);padding:3px 10px;border-radius:20px}
+  .week-head h3{margin:0;font-size:1.15rem;font-weight:700}
+  .w1 .week-head{background:var(--o2)} .w2 .week-head{background:var(--effort)} .w3 .week-head{background:var(--ink)}
+  .sessions{padding:8px 16px 14px}
+  .sess{display:flex;gap:12px;align-items:flex-start;padding:11px 4px;border-bottom:1px dashed var(--line)}
+  .sess:last-child{border-bottom:none}
+  .sess-tag{flex:none;font-family:"Space Mono",monospace;font-size:.62rem;font-weight:700;text-transform:uppercase;
+            letter-spacing:.06em;padding:4px 8px;border-radius:6px;margin-top:2px;min-width:74px;text-align:center}
+  .t-bio{background:var(--grow-bg);color:var(--grow)}
+  .t-physio{background:var(--effort-bg);color:var(--effort)}
+  .t-compo{background:var(--body-bg);color:var(--body-c)}
+  .t-ss{background:var(--archive-bg);color:var(--ink-archive)}
+  .t-rest{background:#EEF1F4;color:var(--ink-soft)}
+  .sess .body small{display:block;color:var(--ink-soft);font-size:.82rem}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;font-family:"Space Mono",monospace;font-size:.7rem;
+          color:var(--ink-soft);margin:4px 0 18px}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+  /* ---------- sujets ---------- */
+  .subj{border:1px solid var(--line);border-radius:var(--r);background:var(--paper-2);margin-bottom:20px;overflow:hidden}
+  .subj-head{padding:14px 18px;border-bottom:1px solid var(--line);background:var(--archive-bg)}
+  .subj-type{font-family:"Space Mono",monospace;font-size:.68rem;font-weight:700;text-transform:uppercase;
+             letter-spacing:.1em;color:var(--ink-archive)}
+  .subj-q{font-weight:700;font-size:1.1rem;margin-top:5px;line-height:1.4}
+  .subj-body{padding:16px 18px}
+  .subj-body .lead{font-family:"Space Mono",monospace;font-size:.7rem;text-transform:uppercase;
+                   letter-spacing:.08em;color:var(--ink-soft);margin:14px 0 4px}
+  .doc-box{background:var(--paper);border:1px dashed var(--ink-archive);border-radius:10px;
+           padding:14px 16px;margin:4px 0 10px;font-style:italic}
+  .doc-box .src{font-style:normal;font-family:"Space Mono",monospace;font-size:.72rem;
+                color:var(--ink-soft);display:block;margin-top:10px}
+  .model-plan{background:var(--archive-bg);border-radius:10px;padding:14px 16px;margin-top:12px}
+  .model-plan .lead{margin-top:0}
+  .model-plan ol{margin:6px 0 0;padding-left:20px}
+  .model-plan ol li{margin:6px 0}
+  footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);color:var(--ink-soft);font-size:.85rem}
+  a{color:var(--o2)}
+  @media (max-width:560px){
+    body{font-size:17px}
+    h1{font-size:1.7rem}
+    .scorebar{flex-direction:column;gap:4px;border-radius:14px}
+  }
+  @media (prefers-reduced-motion:reduce){.panel.on{animation:none}}
+</style>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Carnet de révision · STAPS L2 · Session de rattrapage</div>
+    <h1>Le carnet de révisions</h1>
+    <p>Deux épreuves à reprendre : <b>Biologie / Physiologie 4</b> (QCM tout-ou-rien + figure) et <b>Sciences sociales</b> (commentaire de document). Tout est ici : fiches, entraînement, méthode.</p>
+    <span class="tag">Pense au tiers-temps : tu as le droit à plus de temps, utilise-le</span>
+  </div>
+</header>
+
+<nav>
+  <div class="wrap">
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" aria-current="true" data-tab="fiches">① Fiches Bio</button>
+      <button class="tab" role="tab" aria-current="false" data-tab="qcm">② QCM tout-ou-rien</button>
+      <button class="tab" role="tab" aria-current="false" data-tab="dissert">③ Méthode commentaire</button>
+      <button class="tab" role="tab" aria-current="false" data-tab="planning">④ Planning</button>
+      <button class="tab" role="tab" aria-current="false" data-tab="sujets">⑤ Sujets commentaire</button>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- ============ FICHES BIO ============ -->
+  <div class="panel on" id="fiches">
+
+    <section class="block grow">
+      <div class="block-head"><span class="n">01</span><h2>Croissance &amp; développement</h2></div>
+      <div class="block-body">
+        <div class="subhead">Deux notions à ne pas confondre</div>
+        <ul class="keys">
+          <li><b class="t">Facteurs DE LA croissance</b> = tout ce qui influence la croissance, en 3 groupes : <b class="t">génétiques</b>, <b class="t">internes</b> (hormones + système nerveux) et <b class="t">externes</b> (nutrition + socio-économique).</li>
+          <li><b class="t">Facteurs DE croissance</b> = des <b class="t">molécules</b> (petites protéines) qui font communiquer les cellules et stimulent la synthèse d'ADN. Modes d'action : <b class="t">endocrine, paracrine, autocrine</b>.</li>
+        </ul>
+        <div class="subhead">Les 3 lois de la croissance (Godin)</div>
+        <ul class="keys">
+          <li><b class="t">Lois pubertaires :</b> avant la puberté, croissance surtout <b class="t">osseuse</b> et en hauteur (membres inférieurs) ; après, surtout <b class="t">musculaire</b> et au tronc.</li>
+          <li><b class="t">Loi des alternances :</b> un os long s'allonge et s'épaissit <b class="t">en alternance</b>, jamais en même temps.</li>
+          <li><b class="t">Loi des asymétries :</b> chez le droitier, le membre supérieur droit est un peu plus long et gros — asymétrie due à l'usage, et tout à fait normale.</li>
+        </ul>
+        <div class="subhead">Le système hormonal</div>
+        <ul class="keys">
+          <li><b class="t">GH (hormone de croissance) :</b> sécrétée par l'<b class="t">hypophyse</b> (lobe antérieur), surtout pendant le <b class="t">sommeil</b> ; stimulée par la somatolibérine, freinée par la somatostatine.</li>
+          <li><b class="t">Somatomédine-C = IGF-1 :</b> produite par le <b class="t">foie</b> sous l'effet de la GH — c'est elle qui stimule vraiment les cartilages de croissance.</li>
+          <li><b class="t">Hormones thyroïdiennes (T3, T4) :</b> nécessaires à la formation de l'os ; leur carence = retard d'âge osseux + baisse de GH.</li>
+          <li><b class="t">Glucocorticoïdes (cortisol) :</b> <b class="t">pas</b> nécessaires à la croissance — en excès, ils la <b class="t">ralentissent</b>.</li>
+          <li><b class="t">Vitamine D (antirachitique) :</b> fixe le calcium sur l'os ; fabriquée par la peau sous les <b class="t">UV</b>.</li>
+          <li><b class="t">Hormones sexuelles (testostérone / œstradiol) :</b> à la puberté, elles boostent la GH → poussée de croissance, puis <b class="t">ferment les cartilages</b> (effet en 2 temps). ~20 % de la taille adulte se fait à la puberté.</li>
+        </ul>
+        <div class="subhead">Croissance, maturation, puberté</div>
+        <ul class="keys">
+          <li><b class="t">3 mécanismes cellulaires :</b> hyperplasie (plus de cellules), hypertrophie (cellules plus grosses), + substances intercellulaires.</li>
+          <li><b class="t">Croissance ≠ maturation :</b> grandir (quantité) vs progresser vers l'adulte (qualité). La maturation se lit par l'<b class="t">âge chronologique</b>, l'<b class="t">âge osseux</b> et le <b class="t">stade sexuel</b>.</li>
+          <li><b class="t">Stades de TANNER :</b> 5 stades des caractères sexuels secondaires. Chez la fille, les <b class="t">premières règles</b> sont le signe le plus net (le plus objectif) du passage à la puberté — même si le tout premier signe est le développement des seins.</li>
+          <li><b class="t">Courbes de référence :</b> celles de Sempé (carnet de santé), lues en <b class="t">percentiles</b> (3e–97e = 95 % de la population).</li>
+        </ul>
+        <figure class="svg-card">
+          <svg viewBox="0 0 640 300" role="img" aria-label="Courbe de vitesse de croissance selon l'âge, avec le pic pubertaire plus précoce chez les filles que chez les garçons">
+            <line x1="60" y1="250" x2="610" y2="250" stroke="#5A5E68" stroke-width="2"/>
+            <line x1="60" y1="40" x2="60" y2="250" stroke="#5A5E68" stroke-width="2"/>
+            <text x="58" y="30" font-family="Space Mono,monospace" font-size="12" fill="#5A5E68" text-anchor="end" transform="rotate(-90 16 150)">vitesse de croissance (cm/an)</text>
+            <text x="335" y="285" font-family="Space Mono,monospace" font-size="12" fill="#5A5E68" text-anchor="middle">âge (ans)</text>
+            <!-- girls -->
+            <path d="M60,90 C120,150 170,205 230,200 C280,196 300,90 330,95 C360,100 400,235 470,243 C540,248 580,249 610,250" fill="none" stroke="var(--effort)" stroke-width="3"/>
+            <circle cx="315" cy="80" r="5" fill="var(--effort)"/>
+            <text x="322" y="76" font-family="Space Mono,monospace" font-size="12" fill="var(--effort)">filles ~12 ans</text>
+            <!-- boys -->
+            <path d="M60,110 C120,165 175,212 250,210 C320,208 360,205 400,100 C430,118 470,238 530,245 C570,248 595,249 610,250" fill="none" stroke="var(--o2)" stroke-width="3" stroke-dasharray="2 0"/>
+            <circle cx="388" cy="92" r="5" fill="var(--o2)"/>
+            <text x="396" y="88" font-family="Space Mono,monospace" font-size="12" fill="var(--o2)">garçons ~14 ans</text>
+            <text x="300" y="150" font-family="Atkinson Hyperlegible,sans-serif" font-size="13" fill="#5A5E68">pic de croissance pubertaire (PHV)</text>
+          </svg>
+          <figcaption>Le pic pubertaire arrive plus tôt chez les filles</figcaption>
+        </figure>
+        <div class="piege"><span class="ico">⚠ piège</span><div>Le piège classique : <b>facteurs DE croissance</b> (des molécules) ≠ <b>facteurs DE LA croissance</b> (génétique, hormones, nutrition…). Et après la naissance, le muscle grandit surtout par <b>hypertrophie</b>, pas par hyperplasie.</div></div>
+      </div>
+    </section>
+
+    <section class="block effort">
+      <div class="block-head"><span class="n">02</span><h2>Physiologie de l'effort (et de l'enfant)</h2></div>
+      <div class="block-body">
+        <div class="subhead">Les deux seuils (définitions du cours)</div>
+        <ul class="keys">
+          <li><b class="t">SV1 :</b> le <b class="t">bicarbonate tamponne les ions H⁺</b> → production de <b class="t">CO₂</b> en plus → la ventilation augmente. C'est le seuil de l'<b class="t">endurance aérobie</b> (~2 mmol/L de lactate).</li>
+          <li><b class="t">SV2 :</b> seuil de <b class="t">décompensation de l'acidose</b> — le pouvoir tampon du bicarbonate devient insuffisant. C'est le seuil de la <b class="t">puissance aérobie</b> (~4 mmol/L).</li>
+          <li><b class="t">Zone de transition aérobie–anaérobie :</b> entre les deux. L'entraînement en endurance la <b class="t">déplace</b> (recul des seuils) — on peut progresser sans changer la VO₂max.</li>
+        </ul>
+        <div class="subhead">Le cœur à l'effort</div>
+        <ul class="keys">
+          <li><span class="formula">VO₂ = Qc × (CaO₂ − CvO₂)</span> (Fick) &nbsp;et&nbsp; <span class="formula">Qc = FC × VES</span>.</li>
+          <li><b class="t">FC max ≈ 220 − âge</b> (± 10), d'après Astrand.</li>
+        </ul>
+        <div class="subhead">L'enfant n'est pas un adulte en miniature</div>
+        <ul class="keys">
+          <li><b class="t">VES plus faible</b> (cœur plus petit). FC plus élevée, <b class="t">mais elle ne compense pas tout</b> → débit cardiaque (Qc) <b class="t">inférieur</b> à l'adulte. Pour compenser, sa <b class="t">différence artério-veineuse</b> est plus grande.</li>
+          <li><b class="t">VO₂max :</b> absolue plus faible, mais <b class="t">relative (par kg) égale voire supérieure</b> à un adulte sédentaire.</li>
+          <li>Ses <b class="t">seuils</b> se situent à un <b class="t">% de VO₂max plus élevé</b> → il travaille à intensité élevée sans produire beaucoup de lactate.</li>
+          <li><b class="t">Aptitude anaérobie limitée</b> (moins de glycogène ; enzymes PFK et LDH 2–3× moins actives) → <b class="t">lactate max plus bas</b>. Mais ATP/PCr identiques à l'adulte.</li>
+          <li>Ajustement de la <b class="t">VO₂ plus rapide</b> et <b class="t">récupération plus rapide</b> après l'effort.</li>
+        </ul>
+        <figure class="svg-card">
+          <svg viewBox="0 0 640 300" role="img" aria-label="Courbe de la ventilation en fonction de l'intensité, avec les deux seuils ventilatoires SV1 et SV2 délimitant trois zones d'effort">
+            <!-- zones -->
+            <rect x="60" y="40" width="170" height="210" fill="var(--grow-bg)"/>
+            <rect x="230" y="40" width="160" height="210" fill="#FFF4DF"/>
+            <rect x="390" y="40" width="220" height="210" fill="var(--effort-bg)"/>
+            <line x1="60" y1="250" x2="610" y2="250" stroke="#5A5E68" stroke-width="2"/>
+            <line x1="60" y1="40" x2="60" y2="250" stroke="#5A5E68" stroke-width="2"/>
+            <text x="58" y="30" font-family="Space Mono,monospace" font-size="12" fill="#5A5E68" text-anchor="end" transform="rotate(-90 16 150)">ventilation (VE)</text>
+            <text x="335" y="285" font-family="Space Mono,monospace" font-size="12" fill="#5A5E68" text-anchor="middle">intensité de l'effort →</text>
+            <!-- curve -->
+            <path d="M60,235 C150,225 200,215 230,205 C300,180 360,150 390,135 C450,100 520,60 610,48" fill="none" stroke="var(--ink)" stroke-width="3"/>
+            <!-- SV1 -->
+            <line x1="230" y1="40" x2="230" y2="250" stroke="var(--grow)" stroke-width="2" stroke-dasharray="5 4"/>
+            <text x="234" y="56" font-family="Space Mono,monospace" font-weight="700" font-size="13" fill="var(--grow)">SV1</text>
+            <!-- SV2 -->
+            <line x1="390" y1="40" x2="390" y2="250" stroke="var(--effort)" stroke-width="2" stroke-dasharray="5 4"/>
+            <text x="394" y="56" font-family="Space Mono,monospace" font-weight="700" font-size="13" fill="var(--effort)">SV2</text>
+            <text x="135" y="245" font-family="Atkinson Hyperlegible" font-size="12" fill="var(--grow)" text-anchor="middle">modérée</text>
+            <text x="310" y="245" font-family="Atkinson Hyperlegible" font-size="12" fill="#B5832E" text-anchor="middle">lourde</text>
+            <text x="500" y="245" font-family="Atkinson Hyperlegible" font-size="12" fill="var(--effort)" text-anchor="middle">sévère</text>
+          </svg>
+          <figcaption>Deux seuils, trois zones — lactate ~2 puis ~4 mmol/L</figcaption>
+        </figure>
+        <div class="piege"><span class="ico">⚠ piège</span><div>La grosse erreur : croire que la FC élevée compense le petit VES. Non — le <b>débit cardiaque de l'enfant reste inférieur</b> à l'adulte. Et sa <b>lactatémie max est plus basse</b>, pas plus haute. À retenir : on développe son endurance « de la puissance vers la capacité ».</div></div>
+      </div>
+    </section>
+
+    <section class="block compo">
+      <div class="block-head"><span class="n">03</span><h2>Composition corporelle &amp; anthropométrie</h2></div>
+      <div class="block-body">
+        <div class="subhead">Morphologie &amp; somatotype</div>
+        <ul class="keys">
+          <li><b class="t">Morphologie</b> = forme du corps, déterminée par 3 facteurs : <b class="t">musculature, stature, masse grasse</b>.</li>
+          <li><b class="t">Somatotype de SHELDON — 3 composantes</b>, notées de <b class="t">1 à 7</b> : <b class="t">endomorphie</b> (rondeur/gras), <b class="t">mésomorphie</b> (muscle/ossature), <b class="t">ectomorphie</b> (minceur/longiligne). Ex. 7-1-1 = endomorphie extrême.</li>
+        </ul>
+        <div class="subhead">Évaluer la composition corporelle</div>
+        <ul class="keys">
+          <li><b class="t">Modèle à 2 compartiments :</b> masse grasse + masse maigre (= tout le reste : os, muscles, organes, liquides).</li>
+          <li><b class="t">Densitométrie</b> (référence) : densité <span class="formula">D = masse / volume</span>. Le volume se mesure par <b class="t">pesée hydrostatique</b> (Archimède) ou pléthysmographie (Boyle-Mariotte).</li>
+          <li><b class="t">Formule de SIRI (1956)</b> pour passer de la densité au % de gras : <span class="formula">%MG = [(4,95 / D) − 4,5] × 100</span>.</li>
+          <li><b class="t">Plis cutanés</b> (Durnin &amp; Womersley) sur <b class="t">4 sites</b> — bicipital, tricipital, sous-scapulaire, supra-iliaque — pour estimer la densité.</li>
+          <li><b class="t">Impédancemétrie :</b> le gras conduit <b class="t">mal</b> le courant ; l'appareil en déduit le % de gras.</li>
+        </ul>
+        <div class="subhead">IMC &amp; volume des membres</div>
+        <ul class="keys">
+          <li><b class="t">IMC / indice de Quetelet (1871)</b> = <span class="formula">poids / taille²</span> (kg/m²). Repères : &lt;18,5 maigreur · 18,5–24,9 normal · 25–29,9 surpoids · ≥30 obésité.</li>
+          <li><b class="t">JONES &amp; PEARSON (1969) :</b> volume des <b class="t">membres inférieurs</b>, en additionnant des <b class="t">troncs de cône</b> : <span class="formula">V = πh/3 (r₁² + r₁r₂ + r₂²)</span>.</li>
+        </ul>
+        <figure class="svg-card">
+          <svg viewBox="0 0 640 320" role="img" aria-label="Triangle des somatotypes de Sheldon avec endomorphie, mésomorphie et ectomorphie aux trois sommets">
+            <polygon points="320,40 90,280 550,280" fill="none" stroke="#5A5E68" stroke-width="2"/>
+            <circle cx="320" cy="40" r="7" fill="var(--body-c)"/>
+            <circle cx="90" cy="280" r="7" fill="var(--effort)"/>
+            <circle cx="550" cy="280" r="7" fill="var(--grow)"/>
+            <text x="320" y="26" font-family="Space Mono,monospace" font-weight="700" font-size="14" fill="var(--body-c)" text-anchor="middle">MÉSOMORPHIE</text>
+            <text x="320" y="305" font-family="Atkinson Hyperlegible" font-size="12" fill="#5A5E68" text-anchor="middle">muscle &amp; ossature</text>
+            <text x="90" y="305" font-family="Space Mono,monospace" font-weight="700" font-size="14" fill="var(--effort)" text-anchor="middle">ENDOMORPHIE</text>
+            <text x="90" y="320" font-family="Atkinson Hyperlegible" font-size="12" fill="#5A5E68" text-anchor="middle">adiposité</text>
+            <text x="550" y="305" font-family="Space Mono,monospace" font-weight="700" font-size="14" fill="var(--grow)" text-anchor="middle">ECTOMORPHIE</text>
+            <text x="550" y="320" font-family="Atkinson Hyperlegible" font-size="12" fill="#5A5E68" text-anchor="middle">minceur</text>
+          </svg>
+          <figcaption>Trois sommets = trois composantes du physique</figcaption>
+        </figure>
+        <div class="piege"><span class="ico">⚠ piège</span><div>Trois confusions fréquentes : l'<b>IMC ne sépare pas gras et muscle</b> (un sportif musclé peut dépasser 25 sans souci) ; le somatotype a <b>3</b> composantes, pas 4 ; et la formule de Siri part de la <b>densité</b>, pas du poids.</div></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ QCM ============ -->
+  <div class="panel" id="qcm">
+    <div class="qcm-intro">
+      <div class="eyebrow" style="color:var(--effort)">Mode tout-ou-rien · 6 séries</div>
+      <p style="margin:.4em 0 0"><b>La règle qui t'a coûté des points :</b> il faut cocher <b>toutes</b> les bonnes réponses, et <b>aucune</b> mauvaise. Une seule erreur = 0 sur la question. Après validation, le vert = bonne réponse, le rouge = ta mauvaise coche, l'orange = bonne réponse que tu as oubliée. <b>6 séries</b> (A à F) sur les mêmes thèmes, et l'<b>ordre des réponses change à chaque fois</b> — donc lis bien chaque proposition.</p>
+    </div>
+    <div class="setbar">
+      <span class="setbar-label">Série</span>
+      <button class="setbtn" data-set="A" aria-current="true">A</button>
+      <button class="setbtn" data-set="B" aria-current="false">B</button>
+      <button class="setbtn" data-set="C" aria-current="false">C</button>
+      <button class="setbtn" data-set="D" aria-current="false">D</button>
+      <button class="setbtn" data-set="E" aria-current="false">E</button>
+      <button class="setbtn" data-set="F" aria-current="false">F</button>
+      <span class="setbar-hint">mêmes thèmes · questions différentes · réponses mélangées</span>
+    </div>
+    <div class="scorebar"><span>SCORE</span><b><span id="score">0</span> / <span id="total">0</span></b></div>
+    <div id="qcm-list"></div>
+    <div style="text-align:center;margin-top:18px">
+      <button class="btn ghost" id="reset">↺ Recommencer le QCM</button>
+    </div>
+
+    <section class="block" id="histbox" style="margin-top:30px">
+      <div class="block-head" style="background:#EEF1F4"><span class="n" style="color:var(--o2)">↻</span><h2>Historique &amp; progression</h2></div>
+      <div class="block-body">
+        <p style="margin-top:0;color:var(--ink-soft);font-size:.92rem">Chaque série <b>terminée</b> (toutes les questions validées) est enregistrée automatiquement sur ce navigateur. Refais le QCM régulièrement pour voir la courbe monter.</p>
+        <div id="hist-empty" style="font-family:'Space Mono',monospace;font-size:.8rem;color:var(--ink-soft);padding:14px 0">Aucun essai enregistré pour l'instant — termine une série pour démarrer ton suivi.</div>
+        <figure class="svg-card" id="hist-chartcard" style="display:none">
+          <div id="hist-chart"></div>
+          <figcaption>Score (%) à chaque série terminée · du plus ancien au plus récent</figcaption>
+        </figure>
+        <div id="hist-stats" class="timebudget" style="display:none"></div>
+        <div id="hist-list"></div>
+        <div style="text-align:center;margin-top:14px;display:none" id="hist-clearwrap">
+          <button class="btn ghost" id="hist-clear">🗑 Effacer l'historique</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ METHODE ============ -->
+  <div class="panel" id="dissert">
+    <section class="block archive">
+      <div class="block-head"><span class="n">SS</span><h2>Commentaire de texte — méthode réutilisable</h2></div>
+      <div class="block-body">
+        <p style="margin-top:0">Le commentaire n'est <b>pas</b> une dissertation. Ici, le <b>document est au centre</b> : tu ne récites pas un cours autour d'un sujet, tu <b>analyses le document</b> (ce qu'il dit, ce qu'il révèle, ses limites) en l'éclairant avec tes connaissances. <b>Le piège n°1 : la paraphrase.</b> Il faut <b>expliquer</b> (pourquoi l'auteur écrit ça, dans quel but, avec quels enjeux), jamais seulement redire le texte autrement.</p>
+
+        <div class="callout">
+          <b>Avant d'écrire — 1er réflexe :</b> lis le document <b>2 fois</b> et <b>annote-le</b> (souligne les mots-clés, repère les idées et la structure). Identifie : <b>nature</b> (lettre, discours, loi, article, affiche, données…), <b>auteur</b> (qui, quel rôle, quelle légitimité), <b>date + contexte</b>, <b>destinataire</b>, <b>source</b>. Distingue ce que le document <b>dit</b> (explicite) et ce qu'il <b>révèle</b> (implicite). Puis note un plan rapide au brouillon. <i>Utilise ton tiers-temps surtout pour cette lecture : une mauvaise lecture fait rater tout le commentaire.</i>
+        </div>
+
+        <div class="step">
+          <div class="rail"><div class="num">1</div><div class="stem"></div></div>
+          <div class="content">
+            <h3>Introduction — ton point fort, à garder courte</h3>
+            <ul class="keys">
+              <li><b class="t">Présentation du document :</b> nature / auteur / date / destinataire / source.</li>
+              <li><b class="t">Contexte</b> historique.</li>
+              <li><b class="t">Problématique</b> (souvent : « que nous apprend ce document sur… ? »).</li>
+              <li><b class="t">Annonce du plan.</b></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="rail"><div class="num">2</div><div class="stem"></div></div>
+          <div class="content">
+            <h3>Développement — la partie à sécuriser dans le temps</h3>
+            <ul class="keys">
+              <li>Chaque partie = <b class="t">une idée directrice</b>.</li>
+              <li><b class="t">Cite un court passage</b> (entre guillemets) <b class="t">PUIS explique-le</b> et éclaire-le avec le cours.</li>
+              <li>Toujours : <b class="t">analyser, interpréter, critiquer</b> — jamais seulement reformuler.</li>
+              <li>Une <b class="t">transition</b> courte entre les parties. Mieux vaut 2 parties <b>finies</b> qu'une 3e bâclée.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="rail"><div class="num">3</div><div class="stem"></div></div>
+          <div class="content">
+            <h3>Conclusion — toujours la garder, même brève</h3>
+            <ul class="keys">
+              <li><b class="t">Bilan :</b> réponse à la problématique (ce que le document révèle).</li>
+              <li><b class="t">Portée ET limites</b> du document (un document est situé, partiel, a un auteur et un but).</li>
+              <li><b class="t">Ouverture.</b></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="callout">
+          <div class="eyebrow" style="color:var(--ink-archive)">Le réflexe clé : expliquer, pas paraphraser</div>
+          <p style="margin:.5em 0 0"><b style="color:var(--bad)">❌ Paraphrase :</b> « L'auteur dit que le sport ne doit plus être réservé à quelques-uns. »</p>
+          <p style="margin:.5em 0 0"><b style="color:var(--good)">✅ Commentaire :</b> « En affirmant que le sport ne doit plus être un privilège, l'auteur traduit l'ambition du Front populaire d'en faire un <b>droit social</b> accessible à tous — ce qui rompt avec la conception élitiste du sport d'avant 1936. »</p>
+        </div>
+
+        <div class="eyebrow" style="color:var(--ink-archive);margin-top:6px">Budget temps conseillé (à adapter avec le tiers-temps)</div>
+        <div class="timebudget">
+          <span class="chip">Lecture + annotation + plan · 20 %</span>
+          <span class="chip">Introduction · 15 %</span>
+          <span class="chip">Développement · 50 %</span>
+          <span class="chip">Conclusion + relecture · 15 %</span>
+        </div>
+
+        <div class="piege"><span class="ico">✎ tips</span><div>
+          <ul class="keys" style="margin:0">
+            <li>Sers-toi du tiers-temps pour <b>lire le document à fond</b> (2 lectures + annotation), c'est l'étape la plus rentable.</li>
+            <li><b>Annote visuellement :</b> surligne les mots-clés, numérote les idées, encadre la structure du texte (ton point fort).</li>
+            <li>À <b>chaque citation</b>, demande-toi « pourquoi l'auteur écrit ça ? » et « qu'est-ce que ça révèle ? ». Si tu te contentes de redire, tu paraphrases.</li>
+            <li>N'oublie jamais la <b>critique du document</b> (point de vue, intention, ce qu'il omet) ni la <b>conclusion</b> : ce sont des points faciles, souvent perdus faute de temps.</li>
+          </ul>
+        </div></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ PLANNING ============ -->
+  <div class="panel" id="planning">
+    <div class="qcm-intro">
+      <div class="eyebrow" style="color:var(--o2)">Plan sur ~3 semaines</div>
+      <p style="margin:.4em 0 0">À adapter facilement à 2 semaines en gardant l'ordre. <b>Vise des séances de 25-40 min</b>, plusieurs courtes valent mieux qu'une longue. Coche mentalement, mais l'essentiel : <b>refaire le QCM</b> et <b>rédiger en chrono</b>.</p>
+    </div>
+
+    <div class="principles">
+      <span class="chip">Séances courtes &amp; fréquentes</span>
+      <span class="chip">Alterner bio ⇄ socio</span>
+      <span class="chip">Refaire le QCM &gt; relire</span>
+      <span class="chip">Rédiger chronométré (tiers-temps)</span>
+    </div>
+
+    <div class="legend">
+      <span><i style="background:var(--grow)"></i>Croissance</span>
+      <span><i style="background:var(--effort)"></i>Effort/physio</span>
+      <span><i style="background:var(--body-c)"></i>Composition</span>
+      <span><i style="background:var(--ink-archive)"></i>Sciences sociales</span>
+      <span><i style="background:#B8BFC8"></i>Repos</span>
+    </div>
+
+    <div class="week w1">
+      <div class="week-head"><span class="wn">Semaine 1</span><h3>Comprendre &amp; fixer</h3></div>
+      <div class="sessions">
+        <div class="sess"><span class="sess-tag t-bio">Bio · croissance</span><div class="body">Lire la fiche bloc 01, regarder la courbe du pic pubertaire.<small>Puis QCM questions 1 à 3.</small></div></div>
+        <div class="sess"><span class="sess-tag t-physio">Bio · effort</span><div class="body">Lire la fiche bloc 02 + la courbe des seuils SV1/SV2 et les 3 zones.<small>Puis QCM questions 4 à 7.</small></div></div>
+        <div class="sess"><span class="sess-tag t-compo">Bio · compo</span><div class="body">Lire la fiche bloc 03 + le triangle des somatotypes ; mémoriser IMC et Siri.<small>Puis QCM questions 8 à 10.</small></div></div>
+        <div class="sess"><span class="sess-tag t-ss">Socio</span><div class="body">Lire la méthode de commentaire, puis faire <b>2 plans rapides</b> (juste intro + annonce de plan) sur des sujets variés — sans tout rédiger.<small>Objectif : cadrer vite, ton point fort.</small></div></div>
+        <div class="sess"><span class="sess-tag t-rest">Repos</span><div class="body">Une journée plus légère ou off dans la semaine.<small>Le cerveau consolide pendant les pauses.</small></div></div>
+      </div>
+    </div>
+
+    <div class="week w2">
+      <div class="week-head"><span class="wn">Semaine 2</span><h3>S'entraîner en conditions</h3></div>
+      <div class="sessions">
+        <div class="sess"><span class="sess-tag t-physio">Bio · QCM</span><div class="body">Refaire <b>tout le QCM</b> d'un coup, puis noter les 4-5 pièges où tu te trompes encore.<small>Recommence-le une 2e fois le lendemain.</small></div></div>
+        <div class="sess"><span class="sess-tag t-ss">Socio · chrono</span><div class="body">Rédiger <b>un développement complet</b> sur un de tes plans, chronométré avec le tiers-temps.<small>Le vrai exercice : tenir le temps jusqu'à la conclusion.</small></div></div>
+        <div class="sess"><span class="sess-tag t-ss">Socio · chrono</span><div class="body">Une 2e rédaction complète chronométrée, sujet différent.<small>Compare : as-tu mieux géré le temps que la 1re fois ?</small></div></div>
+        <div class="sess"><span class="sess-tag t-bio">Bio · schémas</span><div class="body">Revoir les schémas (ton point fort) pour la partie « figure » de l'épreuve.<small>Entretien rapide, tu es déjà bon là-dessus.</small></div></div>
+      </div>
+    </div>
+
+    <div class="week w3">
+      <div class="week-head"><span class="wn">Derniers jours</span><h3>Dernière ligne droite</h3></div>
+      <div class="sessions">
+        <div class="sess"><span class="sess-tag t-physio">Bio · blanc</span><div class="body">QCM en conditions d'examen : <b>viser 100 % deux fois de suite</b>.<small>Ensuite, revoir uniquement la liste de tes pièges.</small></div></div>
+        <div class="sess"><span class="sess-tag t-ss">Socio · réel</span><div class="body">Une dissertation complète en temps réel, intro → développement → conclusion.<small>Relis ta fiche méthode juste avant.</small></div></div>
+        <div class="sess"><span class="sess-tag t-rest">Veille</span><div class="body">Révision <b>légère</b> seulement : relire les fiches et les schémas, pas de nouveau contenu.<small>Bien dormir compte plus qu'une heure de révision en plus.</small></div></div>
+      </div>
+    </div>
+
+    <div class="piege"><span class="ico">★ le jour J</span><div>Pose une montre dès le début, répartis ton temps (tiers-temps inclus) avant d'écrire, et en bio relis chaque question en te demandant : « <b>y a-t-il une 2e bonne réponse ?</b> »</div></div>
+  </div>
+
+  <!-- ============ SUJETS ============ -->
+  <div class="panel" id="sujets">
+    <div class="qcm-intro">
+      <div class="eyebrow" style="color:var(--ink-archive)">3 sujets de commentaire · histoire-socio du sport</div>
+      <p style="margin:.4em 0 0">Pour t'entraîner : lis le document <b>2 fois en l'annotant</b>, fais ton <b>plan au brouillon</b>, puis rédige <b>en chronométrant</b> (avec le tiers-temps), en allant <b>jusqu'à la conclusion</b>. Sous chaque sujet, l'orientation et les connaissances à mobiliser — mais le plan, c'est toi qui le construis. <b>Pense à expliquer, pas à paraphraser.</b></p>
+    </div>
+
+    <div class="subj">
+      <div class="subj-head">
+        <div class="subj-type">Sujet 1 · commentaire · format de l'examen</div>
+        <div class="subj-q">Présentez et analysez ce document. Que révèle-t-il de la place nouvelle accordée au sport et aux loisirs dans la France du Front populaire ?</div>
+      </div>
+      <div class="subj-body">
+        <div class="lead">Document à commenter</div>
+        <div class="doc-box">
+          « Le sport et le grand air ne doivent plus être le privilège de quelques-uns. Avec les premiers congés et la réduction du temps de travail, il revient à l'État d'organiser, pour le plus grand nombre, les conditions d'une pratique saine et joyeuse — dans les villes comme dans les campagnes, et jusque dans nos territoires d'outre-mer. »
+          <span class="src">Document de travail reconstitué pour l'entraînement, dans l'esprit des textes sur les loisirs populaires de 1936. Ce n'est pas une citation authentique : à l'examen, le document sera réel.</span>
+        </div>
+        <div class="lead">Ce que le sujet attend</div>
+        <p style="margin:0">Identifier la nature / le contexte du document, puis dégager l'idée que l'État se dote pour la première fois d'une <b>politique des loisirs et du sport pour tous</b>, et en montrer les enjeux (social, éducatif, politique).</p>
+        <div class="lead">À mobiliser</div>
+        <ul class="keys">
+          <li>Les <b class="t">congés payés</b> (1936).</li>
+          <li>Le <b class="t">sous-secrétariat aux Sports et Loisirs</b> confié à <b class="t">Léo Lagrange</b>.</li>
+          <li>La <b class="t">démocratisation</b> : le sport passe du privilège au droit social.</li>
+          <li>Les dimensions <b class="t">santé / éducation</b> ; l'extension annoncée aux territoires d'outre-mer.</li>
+          <li><b class="t">Critique :</b> c'est un texte d'<b class="t">intention / de programme</b>, à confronter à la réalité de sa mise en œuvre.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="subj">
+      <div class="subj-head">
+        <div class="subj-type">Sujet 2 · commentaire · proche de l'épreuve passée (sport colonial)</div>
+        <div class="subj-q">Analysez ce document. Comment éclaire-t-il les logiques contradictoires de la diffusion du sport dans les colonies françaises ?</div>
+      </div>
+      <div class="subj-body">
+        <div class="lead">Document à commenter</div>
+        <div class="doc-box">
+          « Nos jeunes gens des Antilles réclament les mêmes terrains, les mêmes brevets sportifs et les mêmes encouragements que ceux de la métropole. Donner au sport colonial les moyens de la métropole, ce serait reconnaître que nos populations méritent la même attention de la République. »
+          <span class="src">Document reconstitué pour l'entraînement, dans l'esprit d'une demande adressée à l'administration en 1936. Ce n'est pas une citation authentique.</span>
+        </div>
+        <div class="lead">Ce que le sujet attend</div>
+        <p style="margin:0">Montrer l'<b>ambivalence</b> du sport colonial — outil d'encadrement et de diffusion de la puissance métropolitaine, mais aussi <b>levier d'affirmation et d'intégration revendiqué localement</b>.</p>
+        <div class="lead">À mobiliser</div>
+        <ul class="keys">
+          <li>Le sport comme <b class="t">outil du projet colonial</b> (encadrement, « civilisation », rayonnement de la métropole).</li>
+          <li>L'<b class="t">appropriation locale</b> et la revendication d'égalité de traitement.</li>
+          <li>Le contexte du <b class="t">Front populaire</b> et la promesse d'étendre les politiques sportives aux colonies.</li>
+          <li><b class="t">Critique :</b> qui parle (un porte-parole local), dans quel but (obtenir des moyens), et ce que cela révèle des rapports métropole / colonies.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="subj">
+      <div class="subj-head">
+        <div class="subj-type">Sujet 3 · commentaire · le sport comme instrument politique</div>
+        <div class="subj-q">Présentez et commentez ce document. En quoi montre-t-il que le sport peut devenir un instrument politique ?</div>
+      </div>
+      <div class="subj-body">
+        <div class="lead">Document à commenter</div>
+        <div class="doc-box">
+          « Un peuple qui pratique le sport est un peuple plus sain, plus discipliné et plus uni. C'est pourquoi aucun État moderne ne peut se désintéresser de l'éducation physique de sa jeunesse, ni laisser au hasard l'organisation de ses loisirs. »
+          <span class="src">Document reconstitué pour l'entraînement. Ce n'est pas une citation authentique.</span>
+        </div>
+        <div class="lead">Ce que le sujet attend</div>
+        <p style="margin:0">Dégager la <b>vision instrumentale</b> du sport (au service de l'État) et en analyser les ressorts.</p>
+        <div class="lead">À mobiliser</div>
+        <ul class="keys">
+          <li>L'<b class="t">encadrement de la jeunesse</b>, la <b class="t">cohésion</b> et la <b class="t">discipline</b>, la <b class="t">santé publique</b>, le <b class="t">rayonnement</b>.</li>
+          <li>Les usages du sport aussi bien par les <b class="t">démocraties</b> (ex. Front populaire) que par les <b class="t">régimes autoritaires</b> (propagande, mise en scène).</li>
+          <li><b class="t">Critique :</b> un discours <b class="t">normatif et général</b>, dont il faut interroger l'<b class="t">intention</b> de l'auteur.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="piege"><span class="ico">✎ conseil</span><div>Refais le <b>même sujet</b> deux fois à quelques jours d'écart : la 2ᵉ fois, tu rédigeras plus vite et tu boucleras la conclusion. C'est exactement la compétence qui te manquait.</div></div>
+  </div>
+
+  <footer>
+    Carnet de révisions · révise par petites séances, refais le QCM jusqu'à 100 % deux fois de suite.
+  </footer>
+</main>
+
+<script>
+/* ---------- tabs ---------- */
+const tabs=[...document.querySelectorAll('.tab')];
+const panels={fiches:document.getElementById('fiches'),qcm:document.getElementById('qcm'),dissert:document.getElementById('dissert'),planning:document.getElementById('planning'),sujets:document.getElementById('sujets')};
+tabs.forEach(t=>t.addEventListener('click',()=>{
+  tabs.forEach(x=>x.setAttribute('aria-current',x===t));
+  Object.values(panels).forEach(p=>p.classList.remove('on'));
+  panels[t.dataset.tab].classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+}));
+
+/* ---------- QCM data ---------- */
+const QCM_SETS={};
+QCM_SETS.A=[
+  {block:'grow',c:'var(--grow)',q:"« Facteurs de croissance » et « facteurs DE LA croissance » :",
+   o:["Les facteurs de croissance sont des molécules qui stimulent la synthèse d'ADN","Les facteurs de la croissance se classent en génétiques, internes et externes","Les facteurs de croissance agissent en mode endocrine, paracrine ou autocrine","Les deux expressions désignent exactement la même chose"],a:[0,1,2],
+   e:"Le cours insiste : deux notions différentes. Les molécules (facteurs DE croissance) ≠ les catégories de facteurs (génétique, hormones, nutrition…)."},
+  {block:'grow',c:'var(--grow)',q:"Les lois de la croissance (Godin) :",
+   o:["Avant la puberté, la croissance est surtout osseuse et en hauteur","Après la puberté, elle devient surtout musculaire","Un os long s'allonge et s'épaissit en même temps","Chez le droitier, le membre supérieur droit est un peu plus long et gros"],a:[0,1,3],
+   e:"Loi des alternances : un os long s'allonge et s'épaissit en alternance, jamais simultanément."},
+  {block:'grow',c:'var(--grow)',q:"Le système hormonal de la croissance :",
+   o:["La GH est sécrétée par l'hypophyse, surtout pendant le sommeil","La somatomédine-C (IGF-1) est produite par le foie","Le cortisol est indispensable à la croissance","Les hormones thyroïdiennes sont nécessaires à la formation de l'os"],a:[0,1,3],
+   e:"Le cortisol n'est PAS nécessaire à la croissance ; en excès il la ralentit."},
+  {block:'grow',c:'var(--grow)',q:"À la puberté :",
+   o:["Les hormones sexuelles stimulent la sécrétion de GH","Elles finissent par fermer les cartilages de croissance","Le pic de croissance est plus précoce chez les filles","La croissance musculaire après la naissance est surtout hyperplasique"],a:[0,1,2],
+   e:"Après la naissance, le muscle grandit surtout par hypertrophie des fibres, pas par hyperplasie."},
+  {block:'grow',c:'var(--grow)',q:"Croissance et maturation :",
+   o:["La croissance repose sur l'hyperplasie, l'hypertrophie et les substances intercellulaires","Le degré de maturation se lit via l'âge chronologique, l'âge osseux et le stade sexuel","Les stades de Tanner évaluent les caractères sexuels secondaires","Croissance et maturation veulent dire exactement la même chose"],a:[0,1,2],
+   e:"La croissance, c'est grandir (quantité) ; la maturation, c'est progresser vers l'état adulte (qualité)."},
+  {block:'effort',c:'var(--effort)',q:"Au premier seuil ventilatoire (SV1) :",
+   o:["Le bicarbonate tamponne les ions H⁺","Cela produit du CO₂ supplémentaire","La ventilation augmente","C'est le seuil de décompensation de l'acidose"],a:[0,1,2],
+   e:"La décompensation de l'acidose, c'est le SV2, pas le SV1."},
+  {block:'effort',c:'var(--effort)',q:"La zone de transition aérobie–anaérobie :",
+   o:["Le 1er seuil est le seuil de l'endurance aérobie","Le 2e seuil est le seuil de la puissance aérobie","L'entraînement en endurance déplace cette zone (recul des seuils)","On ne peut pas progresser sans augmenter la VO₂max"],a:[0,1,2],
+   e:"On peut progresser en reculant les seuils, sans modifier la VO₂max."},
+  {block:'effort',c:'var(--effort)',q:"Le cœur de l'enfant à l'effort (vs adulte) :",
+   o:["Son VES (volume d'éjection) est plus faible","Sa fréquence cardiaque est plus élevée","Son débit cardiaque (Qc) est plus élevé que celui de l'adulte","Sa différence artério-veineuse en O₂ est plus grande"],a:[0,1,3],
+   e:"La FC élevée ne compense pas tout : le débit cardiaque de l'enfant reste INFÉRIEUR à celui de l'adulte."},
+  {block:'effort',c:'var(--effort)',q:"Le métabolisme de l'enfant à l'effort :",
+   o:["Sa lactatémie maximale est plus basse que chez l'adulte","Ses enzymes glycolytiques (PFK, LDH) sont moins actives","Sa VO₂max relative (par kg) est très inférieure à l'adulte","Il récupère plus vite après l'effort"],a:[0,1,3],
+   e:"Sa VO₂max RELATIVE est égale voire supérieure à celle d'un adulte sédentaire."},
+  {block:'effort',c:'var(--effort)',q:"VO₂ et débit cardiaque :",
+   o:["VO₂ = Qc × (CaO₂ − CvO₂)","Qc = FC × VES","FC max ≈ 220 − âge","L'ajustement de la VO₂ est plus lent chez l'enfant"],a:[0,1,2],
+   e:"Chez l'enfant, l'ajustement oxydatif est plus RAPIDE, pas plus lent."},
+  {block:'compo',c:'var(--body-c)',q:"Le somatotype de Sheldon :",
+   o:["Endomorphie = rondeur / masse grasse","Mésomorphie = muscle et ossature","Ectomorphie = minceur / longiligne","Il comporte 4 composantes"],a:[0,1,2],
+   e:"3 composantes seulement, notées de 1 à 7 (ex. 7-1-1 = endomorphie extrême)."},
+  {block:'compo',c:'var(--body-c)',q:"Densité et masse grasse :",
+   o:["La densité D = masse / volume du corps","Le volume peut se mesurer par pesée hydrostatique (Archimède)","La formule de Siri donne le % de gras à partir de la densité","La formule de Siri part directement du poids"],a:[0,1,2],
+   e:"Siri : %MG = [(4,95/D) − 4,5] × 100 — elle part de la DENSITÉ, pas du poids."},
+  {block:'compo',c:'var(--body-c)',q:"Mesures de terrain de la composition corporelle :",
+   o:["Les plis cutanés (Durnin & Womersley) estiment la densité","Les 4 sites sont bicipital, tricipital, sous-scapulaire, supra-iliaque","Jones & Pearson estiment le volume des membres inférieurs","L'impédancemétrie marche parce que le gras conduit très bien le courant"],a:[0,1,2],
+   e:"Le tissu adipeux conduit MAL le courant (sa résistance est plus élevée)."},
+  {block:'compo',c:'var(--body-c)',q:"IMC / indice de Quetelet :",
+   o:["IMC = poids / taille²","Il s'exprime en kg/m²","Un IMC ≥ 25 prouve toujours un problème de santé","L'IMC ne distingue pas masse grasse et masse maigre"],a:[0,1,3],
+   e:"Un sportif très musclé peut dépasser 25 sans souci : l'IMC ne sépare pas gras et muscle."}
+];
+
+QCM_SETS.B=[
+  {block:'grow',c:'var(--grow)',q:"La croissance staturale et le squelette :",
+   o:["La croissance en longueur dépend des cartilages de conjugaison","La fin de la croissance = disparition de ces cartilages (remplacés par de l'os)","L'exercice augmente la longueur des os","L'os se développe d'abord à partir de cartilage"],a:[0,1,3],
+   e:"L'exercice renforce l'os (largeur, densité, force) mais n'allonge pas les os."},
+  {block:'grow',c:'var(--grow)',q:"Les facteurs DE LA croissance :",
+   o:["Les facteurs génétiques règlent l'allure de la croissance","Les facteurs internes = glandes endocrines + système nerveux","Une carence en protéines peut interrompre la croissance","Le métabolisme de base est plus faible chez l'enfant que chez l'adulte"],a:[0,1,2],
+   e:"Chez le jeune, le métabolisme de base est plus ÉLEVÉ — d'où des besoins énergétiques proportionnellement plus grands."},
+  {block:'grow',c:'var(--grow)',q:"L'hormone de croissance (GH) :",
+   o:["C'est la somatotropine, sécrétée par l'hypophyse","La somatolibérine la stimule, la somatostatine la freine","Elle agit surtout via un facteur produit par le foie (somatomédine)","Elle est sécrétée surtout en pleine journée"],a:[0,1,2],
+   e:"La GH est sécrétée surtout pendant le sommeil nocturne."},
+  {block:'grow',c:'var(--grow)',q:"Vitamine D et autres hormones :",
+   o:["La vitamine D aide à fixer le calcium sur l'os","Une carence en vitamine D provoque un rachitisme","La parathormone joue un rôle majeur dans la croissance de l'enfant","Un excès de cortisol ralentit la croissance"],a:[0,1,3],
+   e:"La parathormone sert surtout au remodelage de l'os, pas vraiment à la croissance de l'enfant."},
+  {block:'grow',c:'var(--grow)',q:"Le tissu adipeux et le tissu nerveux :",
+   o:["Le stockage de graisse se fait d'abord par augmentation du volume des cellules adipeuses","À maturité, le taux de graisse est plus élevé chez les filles que chez les garçons","Les mouvements rapides et précis nécessitent une myélinisation achevée","Le tissu adipeux sous-cutané n'a aucun rapport avec la masse grasse totale"],a:[0,1,2],
+   e:"Le tissu adipeux sous-cutané est au contraire représentatif de la masse grasse totale du corps."},
+  {block:'effort',c:'var(--effort)',q:"Au repos et à l'exercice sous-maximal, chez l'enfant :",
+   o:["Sa pression artérielle est plus faible","Son muscle est mieux perfusé (résistances périphériques plus faibles)","Son débit cardiaque est supérieur à celui de l'adulte","Son cœur et son volume sanguin sont plus petits"],a:[0,1,3],
+   e:"Le débit cardiaque de l'enfant est inférieur à l'adulte (la FC élevée ne compense pas le petit VES)."},
+  {block:'effort',c:'var(--effort)',q:"Le second seuil ventilatoire (SV2) :",
+   o:["C'est le seuil de décompensation de l'acidose métabolique","Le pouvoir tampon du bicarbonate devient insuffisant","Il correspond au seuil de la puissance aérobie","Il se situe à plus faible intensité que le SV1"],a:[0,1,2],
+   e:"Le SV2 se situe à plus HAUTE intensité que le SV1."},
+  {block:'effort',c:'var(--effort)',q:"La VO₂max de l'enfant :",
+   o:["En valeur absolue (L/min), elle augmente au cours de la croissance","En valeur relative (par kg), elle est égale voire supérieure à un adulte sédentaire","Chez le garçon, elle culmine entre 17 et 21 ans","Chez la fille, elle culmine plus tard que chez le garçon"],a:[0,1,2],
+   e:"Chez la fille, la VO₂max culmine plus TÔT (12-15 ans) et baisse plus précocement."},
+  {block:'effort',c:'var(--effort)',q:"L'aptitude anaérobie de l'enfant :",
+   o:["Ses stocks de glycogène musculaire sont plus faibles","Ses enzymes PFK et LDH sont 2 à 3 fois moins actives","Ses réserves d'ATP et de phosphocréatine sont bien inférieures à l'adulte","Sa puissance à un test de Wingate est plus faible"],a:[0,1,3],
+   e:"Les réserves d'ATP/PCr de l'enfant sont identiques à l'adulte ; c'est la glycolyse qui est limitée."},
+  {block:'effort',c:'var(--effort)',q:"La force au cours de la croissance :",
+   o:["Elle augmente avec la masse musculaire et l'âge","Elle progresse beaucoup à la puberté chez les garçons (hormones)","Elle dépend de la maturation du système nerveux","Elle ne dépend pas du tout de la myélinisation"],a:[0,1,2],
+   e:"Les forces et gestes rapides dépendent justement de la myélinisation des nerfs moteurs."},
+  {block:'compo',c:'var(--body-c)',q:"Les trois types de Sheldon :",
+   o:["L'endomorphe est le type le plus rond / gras","Le mésomorphe est le type le plus musclé","L'ectomorphe est le type le plus mince / délicat","Chaque personne n'appartient qu'à un seul de ces trois types"],a:[0,1,2],
+   e:"Chaque individu possède plus ou moins les trois composantes à la fois."},
+  {block:'compo',c:'var(--body-c)',q:"La densitométrie :",
+   o:["Elle mesure la densité du corps (masse / volume)","La pesée hydrostatique repose sur le principe d'Archimède","La pléthysmographie repose sur la loi de Boyle-Mariotte","C'est une méthode simple à réaliser sur le terrain"],a:[0,1,2],
+   e:"La densitométrie est une méthode de laboratoire ; sur le terrain on utilise les plis cutanés."},
+  {block:'compo',c:'var(--body-c)',q:"L'IMC (indice de Quetelet) :",
+   o:["Il se calcule par poids / taille²","Un IMC entre 18,5 et 24,9 correspond à la normale","Un IMC ≥ 30 définit l'obésité","C'est une mesure directe du pourcentage de masse grasse"],a:[0,1,2],
+   e:"L'IMC n'est qu'un indicateur indirect ; il ne mesure pas directement la masse grasse."},
+  {block:'compo',c:'var(--body-c)',q:"Les types d'obésité :",
+   o:["L'obésité gynoïde porte sur le bas du corps","L'obésité androïde porte sur le tronc","L'obésité viscérale est celle qui présente le plus de risques pour la santé","L'obésité gynoïde est la plus dangereuse pour la santé"],a:[0,1,2],
+   e:"L'obésité gynoïde comporte a priori le moins de risques ; ce sont la viscérale et l'androïde qui sont dangereuses."}
+];
+
+QCM_SETS.C=[
+  {block:'grow',c:'var(--grow)',q:"Les facteurs DE croissance (les molécules) :",
+   o:["Ce sont surtout des peptides (petites protéines)","Ils stimulent la synthèse de l'ADN des cellules cibles","Ils reconnaissent un récepteur spécifique (comme une clé et une serrure)","Ils agissent de façon permanente et continue"],a:[0,1,2],
+   e:"Les facteurs de croissance ont une courte vie : ils agissent à un moment précis, pas en continu."},
+  {block:'grow',c:'var(--grow)',q:"Les modes d'action des facteurs de croissance :",
+   o:["Endocrine = la molécule passe par le sang pour atteindre une cellule éloignée","Paracrine = action sur des cellules voisines","Autocrine = la cellule cible se stimule elle-même","Le mode autocrine est en fait très rare"],a:[0,1,2],
+   e:"Le mode autocrine est au contraire le plus fréquent."},
+  {block:'grow',c:'var(--grow)',q:"Le pic de croissance pubertaire :",
+   o:["Il survient vers 12 ans chez les filles","Il survient vers 14 ans chez les garçons","Les filles ont environ 2 ans d'avance sur les garçons","Environ 50 % de la taille adulte s'acquiert pendant la puberté"],a:[0,1,2],
+   e:"Environ 20 % de la taille définitive est acquise au cours de la puberté."},
+  {block:'grow',c:'var(--grow)',q:"Le tissu musculaire :",
+   o:["La masse musculaire augmente surtout à la puberté chez le garçon","Ce gain est lié à la forte hausse de testostérone","La prise de masse est surtout due à l'hypertrophie des fibres","Elle est surtout due à l'hyperplasie (augmentation du nombre de fibres)"],a:[0,1,2],
+   e:"La prise de masse musculaire est surtout de l'hypertrophie, pas/peu de l'hyperplasie."},
+  {block:'grow',c:'var(--grow)',q:"Les courbes de croissance et la maturation :",
+   o:["Les courbes de référence (carnet de santé) sont celles de Sempé","On lit la position en percentiles ou en déviations standards","La population « normale » se situe entre le 3e et le 97e percentile","L'âge osseux est forcément égal à l'âge réel de l'enfant"],a:[0,1,2],
+   e:"L'âge osseux peut être en avance ou en retard sur l'âge chronologique."},
+  {block:'effort',c:'var(--effort)',q:"Le débit cardiaque (formule de Fick) :",
+   o:["VO₂ = Qc × (CaO₂ − CvO₂)","Qc = fréquence cardiaque × volume d'éjection","Pendant l'exercice, le débit cardiaque augmente","Chez l'enfant, la différence artério-veineuse est plus faible"],a:[0,1,2],
+   e:"La différence artério-veineuse de l'enfant est plus GRANDE, pour compenser son débit plus faible."},
+  {block:'effort',c:'var(--effort)',q:"Premier seuil ventilatoire (SV1) :",
+   o:["Le bicarbonate tamponne les ions H⁺","Cela augmente la production de CO₂","C'est le seuil de développement de l'endurance aérobie","Au-delà de ce seuil, l'enfant produit autant de lactate que l'adulte"],a:[0,1,2],
+   e:"Les seuils de l'enfant sont à un % de VO₂max plus élevé : il sollicite moins son métabolisme lactique."},
+  {block:'effort',c:'var(--effort)',q:"La récupération et l'économie de course de l'enfant :",
+   o:["Il récupère plus vite que l'adulte après un effort aérobie","Sa fréquence cardiaque revient plus vite à son niveau de repos","Il a une moins bonne économie de course que l'adulte","Son économie de course est meilleure que celle de l'adulte"],a:[0,1,2],
+   e:"L'économie de course de l'enfant est MOINS bonne (notamment à cause de sa fréquence de foulées)."},
+  {block:'effort',c:'var(--effort)',q:"Le profil métabolique de l'enfant à l'effort :",
+   o:["L'exercice stimule l'axe somatotrope (GH, IGF-1)","L'enfant utilise préférentiellement les lipides","Sa capacité glycolytique est inférieure à celle de l'adulte","Son système anaérobie est très développé"],a:[0,1,2],
+   e:"Le système anaérobie de l'enfant est peu développé ; son métabolisme est surtout oxydatif."},
+  {block:'effort',c:'var(--effort)',q:"À retenir sur l'enfant à l'effort :",
+   o:["Même à intensité élevée, il reste en dominante aérobie","Il passe en dominante aérobie 2 fois plus vite que l'adulte","On développe son endurance « de la puissance vers la capacité »","C'est un adulte en miniature"],a:[0,1,2],
+   e:"« L'enfant n'est pas un adulte en miniature » — chaque stade de développement est unique."},
+  {block:'compo',c:'var(--body-c)',q:"Évaluer la masse grasse :",
+   o:["La formule de Siri donne le % de gras à partir de la densité","La masse maigre = poids − (poids × %MG/100)","Les plis cutanés (Durnin & Womersley) estiment la densité","L'impédancemétrie suppose que le gras conduit très bien le courant"],a:[0,1,2],
+   e:"Le tissu adipeux est un MAUVAIS conducteur ; c'est ce qui permet à l'impédancemétrie de l'estimer."},
+  {block:'compo',c:'var(--body-c)',q:"La morphologie et le somatotype :",
+   o:["La morphologie dépend de la musculature, de la stature et de la masse grasse","Le somatotype se note de 1 à 7 sur chaque composante","Un somatotype 7-1-1 indique une endomorphie extrême","Le somatotype se détermine par une simple prise de sang"],a:[0,1,2],
+   e:"Le somatotype se détermine à partir de photos sous 3 angles, puis de mesures et de tables."},
+  {block:'compo',c:'var(--body-c)',q:"Jones & Pearson (1969) :",
+   o:["La méthode estime le volume des membres inférieurs","Le membre est assimilé à une somme de troncs de cône","Les rayons viennent des circonférences mesurées","Le volume est exprimé en kilogrammes"],a:[0,1,2],
+   e:"Le volume des membres est exprimé en litres (muscle + os), corrigé par les plis cutanés."},
+  {block:'compo',c:'var(--body-c)',q:"Composition corporelle et performance :",
+   o:["Plus la masse grasse est faible, meilleure est en général la performance","La masse maigre est utile pour la force et la puissance","Une forte masse maigre est un avantage pour un coureur de fond","Un excès de masse grasse pénalise le sprint et les sauts"],a:[0,1,3],
+   e:"Pour un sportif d'endurance qui porte son corps, une masse maigre (et un poids) en plus devient un handicap."}
+];
+
+QCM_SETS.D=[
+  {block:'grow',c:'var(--grow)',q:"Les facteurs externes DE LA croissance :",
+   o:["La nutrition fait partie des facteurs externes","Le niveau socio-économique fait partie des facteurs externes","Les hormones sont des facteurs internes, pas externes","Les facteurs génétiques sont un type de facteur externe"],a:[0,1,2],
+   e:"Les 3 groupes de facteurs DE LA croissance : génétiques · internes (hormones + système nerveux) · externes (nutrition + socio-économique)."},
+  {block:'grow',c:'var(--grow)',q:"La loi des asymétries (Godin) :",
+   o:["Chez le droitier, le membre supérieur droit est un peu plus long et plus gros","Cette asymétrie est due à l'usage préférentiel du membre","C'est une asymétrie normale, pas une pathologie","Cette asymétrie concerne surtout les membres inférieurs"],a:[0,1,2],
+   e:"La loi des asymétries porte sur le membre supérieur dominant (droit chez le droitier) ; c'est normal et lié à l'usage."},
+  {block:'grow',c:'var(--grow)',q:"Les hormones thyroïdiennes (T3, T4) :",
+   o:["Elles sont nécessaires à la formation de l'os","Leur carence provoque un retard d'âge osseux","Leur carence s'accompagne d'une baisse de la GH","Le cortisol, lui, est indispensable à la croissance"],a:[0,1,2],
+   e:"Les hormones thyroïdiennes sont nécessaires à l'os ; leur carence = retard d'âge osseux + baisse de GH. Le cortisol n'est PAS nécessaire à la croissance."},
+  {block:'grow',c:'var(--grow)',q:"L'effet en deux temps des hormones sexuelles à la puberté :",
+   o:["Elles stimulent d'abord la sécrétion de GH (poussée de croissance)","Elles finissent par fermer les cartilages de croissance","Environ 20 % de la taille adulte est acquise pendant la puberté","Elles allongent les os pendant toute la vie adulte"],a:[0,1,2],
+   e:"Effet en 2 temps : d'abord accélération (via la GH), puis arrêt par fermeture des cartilages."},
+  {block:'grow',c:'var(--grow)',q:"Les stades de Tanner et la maturation :",
+   o:["Ils décrivent les caractères sexuels secondaires (5 stades)","Chez la fille, les premières règles sont le signe le plus objectif","Chez la fille, le tout premier signe est le développement des seins","L'âge osseux est toujours strictement égal à l'âge réel"],a:[0,1,2],
+   e:"L'âge osseux peut être en avance ou en retard sur l'âge chronologique : c'est un indicateur de maturation à part entière."},
+  {block:'effort',c:'var(--effort)',q:"Le premier seuil ventilatoire (SV1) en détail :",
+   o:["Le bicarbonate y tamponne les ions H⁺ produits","Ce tamponnage libère du CO₂ en plus, ce qui augmente la ventilation","Il correspond à environ 2 mmol/L de lactate","C'est le seuil de la puissance aérobie"],a:[0,1,2],
+   e:"SV1 = seuil de l'endurance aérobie (~2 mmol/L). C'est le SV2 qui est le seuil de la puissance aérobie (~4 mmol/L)."},
+  {block:'effort',c:'var(--effort)',q:"Le second seuil ventilatoire (SV2) en détail :",
+   o:["C'est le seuil de décompensation de l'acidose","Le pouvoir tampon du bicarbonate y devient insuffisant","Il correspond à environ 4 mmol/L de lactate","Il se situe à une intensité plus faible que le SV1"],a:[0,1,2],
+   e:"Le SV2 (~4 mmol/L) se situe à une intensité plus ÉLEVÉE que le SV1 (~2 mmol/L)."},
+  {block:'effort',c:'var(--effort)',q:"La formule de Fick et la FC max :",
+   o:["VO₂ = Qc × (CaO₂ − CvO₂)","Le débit cardiaque Qc = FC × VES","La FC max s'estime par environ 220 − âge (± 10)","Le débit cardiaque diminue quand l'intensité augmente"],a:[0,1,2],
+   e:"À l'effort, le débit cardiaque AUGMENTE (hausse de la FC et du VES). FC max ≈ 220 − âge (Astrand)."},
+  {block:'effort',c:'var(--effort)',q:"Le cœur de l'enfant à l'effort :",
+   o:["Son VES est plus faible (cœur plus petit)","Sa FC est plus élevée mais ne compense pas tout","Sa différence artério-veineuse en O₂ est plus grande","Son débit cardiaque est supérieur à celui de l'adulte"],a:[0,1,2],
+   e:"Le débit cardiaque de l'enfant reste INFÉRIEUR à l'adulte ; il compense par une différence artério-veineuse plus grande."},
+  {block:'effort',c:'var(--effort)',q:"L'aptitude anaérobie de l'enfant :",
+   o:["Ses stocks de glycogène musculaire sont plus faibles","Ses enzymes PFK et LDH sont 2 à 3 fois moins actives","Sa lactatémie maximale est plus basse que chez l'adulte","Ses réserves d'ATP et de phosphocréatine sont très inférieures à l'adulte"],a:[0,1,2],
+   e:"Les réserves d'ATP/PCr de l'enfant sont identiques à l'adulte ; c'est la voie glycolytique (anaérobie lactique) qui est limitée."},
+  {block:'compo',c:'var(--body-c)',q:"Le modèle à 2 compartiments :",
+   o:["Le corps est divisé en masse grasse et masse maigre","La masse maigre comprend os, muscles, organes et liquides","La densitométrie en est la méthode de référence","La masse maigre se limite aux muscles"],a:[0,1,2],
+   e:"La masse maigre = tout sauf la graisse (os, muscles, organes, eau), pas seulement les muscles."},
+  {block:'compo',c:'var(--body-c)',q:"La formule de Siri (1956) :",
+   o:["Elle donne le % de masse grasse à partir de la densité","%MG = [(4,95 / D) − 4,5] × 100","Elle suppose un modèle à 2 compartiments","Elle se calcule directement à partir du poids"],a:[0,1,2],
+   e:"Siri part de la DENSITÉ (D), pas du poids : %MG = [(4,95/D) − 4,5] × 100."},
+  {block:'compo',c:'var(--body-c)',q:"La méthode des plis cutanés :",
+   o:["Durnin & Womersley utilisent 4 sites de mesure","Les sites sont bicipital, tricipital, sous-scapulaire et supra-iliaque","Les plis cutanés servent à estimer la densité corporelle","C'est une méthode de laboratoire difficile sur le terrain"],a:[0,1,2],
+   e:"Les plis cutanés sont au contraire une méthode de TERRAIN, contrairement à la densitométrie (laboratoire)."},
+  {block:'compo',c:'var(--body-c)',q:"L'IMC (indice de Quetelet) :",
+   o:["IMC = poids / taille², en kg/m²","Il a été proposé par Quetelet (1871)","Un IMC ≥ 30 définit l'obésité","Il distingue précisément la masse grasse de la masse musculaire"],a:[0,1,2],
+   e:"L'IMC ne sépare PAS gras et muscle : un sportif musclé peut dépasser 25 sans excès de graisse."},
+  {block:'compo',c:'var(--body-c)',q:"Les types d'obésité :",
+   o:["L'obésité androïde se localise sur le tronc","L'obésité gynoïde se localise sur le bas du corps","L'obésité viscérale est la plus à risque pour la santé","L'obésité gynoïde est la plus dangereuse pour la santé"],a:[0,1,2],
+   e:"Ce sont la viscérale et l'androïde qui sont dangereuses ; la gynoïde comporte a priori le moins de risques."}
+];
+
+QCM_SETS.E=[
+  {block:'grow',c:'var(--grow)',q:"Les facteurs DE croissance (les molécules) :",
+   o:["Ce sont des peptides (petites protéines)","Ils stimulent la synthèse d'ADN des cellules cibles","Ils se fixent sur un récepteur spécifique (clé-serrure)","Ils agissent en continu, en permanence"],a:[0,1,2],
+   e:"Les facteurs DE croissance ont une vie courte : ils agissent à un moment précis, pas en continu."},
+  {block:'grow',c:'var(--grow)',q:"Les modes d'action des facteurs de croissance :",
+   o:["Endocrine : la molécule passe par le sang vers une cellule éloignée","Paracrine : action sur les cellules voisines","Autocrine : la cellule se stimule elle-même","Le mode autocrine est exceptionnel et très rare"],a:[0,1,2],
+   e:"Le mode autocrine est en réalité le plus fréquent."},
+  {block:'grow',c:'var(--grow)',q:"La croissance osseuse en longueur :",
+   o:["Elle dépend des cartilages de conjugaison","L'os se forme d'abord à partir d'une ébauche cartilagineuse","La fin de la croissance = disparition de ces cartilages","L'exercice physique augmente la longueur des os"],a:[0,1,2],
+   e:"L'exercice renforce l'os (densité, largeur, solidité) mais ne l'allonge pas : la longueur dépend des cartilages de conjugaison."},
+  {block:'grow',c:'var(--grow)',q:"L'hormone de croissance (GH = somatotropine) :",
+   o:["Elle est sécrétée par le lobe antérieur de l'hypophyse","Elle est sécrétée surtout pendant le sommeil","La somatolibérine la stimule, la somatostatine la freine","Elle agit sur les cartilages sans aucun intermédiaire"],a:[0,1,2],
+   e:"La GH agit largement via la somatomédine-C (IGF-1) produite par le foie, qui stimule réellement les cartilages."},
+  {block:'grow',c:'var(--grow)',q:"Mécanismes cellulaires et maturation :",
+   o:["L'hyperplasie = augmentation du nombre de cellules","L'hypertrophie = augmentation de la taille des cellules","La maturation se lit via l'âge chronologique, l'âge osseux et le stade sexuel","Croissance et maturation sont deux mots pour la même chose"],a:[0,1,2],
+   e:"Croissance = grandir (quantité) ; maturation = progresser vers l'état adulte (qualité). Deux notions distinctes."},
+  {block:'effort',c:'var(--effort)',q:"La zone de transition aérobie–anaérobie :",
+   o:["Elle se situe entre le SV1 et le SV2","L'entraînement en endurance la déplace (recul des seuils)","On peut progresser en reculant les seuils sans augmenter la VO₂max","Reculer les seuils est impossible sans augmenter la VO₂max"],a:[0,1,2],
+   e:"On peut nettement progresser en endurance en reculant les seuils, même à VO₂max constante."},
+  {block:'effort',c:'var(--effort)',q:"La VO₂max de l'enfant :",
+   o:["En valeur absolue (L/min), elle augmente au cours de la croissance","En valeur relative (par kg), elle est égale voire supérieure à un adulte sédentaire","Chez la fille, elle culmine plus tôt que chez le garçon","En valeur relative, elle est très inférieure à celle de l'adulte"],a:[0,1,2],
+   e:"Rapportée au poids, la VO₂max de l'enfant est égale ou supérieure à celle d'un adulte sédentaire."},
+  {block:'effort',c:'var(--effort)',q:"L'enfant à l'exercice sous-maximal :",
+   o:["Sa pression artérielle est plus faible que celle de l'adulte","Son muscle est mieux perfusé (résistances périphériques plus faibles)","Son cœur et son volume sanguin sont plus petits","Son débit cardiaque est supérieur à celui de l'adulte"],a:[0,1,2],
+   e:"Malgré une FC plus élevée, le débit cardiaque de l'enfant reste inférieur (cœur et VES plus petits)."},
+  {block:'effort',c:'var(--effort)',q:"Le métabolisme énergétique de l'enfant à l'effort :",
+   o:["Il est surtout oxydatif (aérobie)","Il utilise préférentiellement les lipides","Sa capacité glycolytique (anaérobie lactique) est inférieure à l'adulte","Son système anaérobie est très développé"],a:[0,1,2],
+   e:"Le système anaérobie de l'enfant est peu développé : il reste en dominante aérobie même à intensité élevée."},
+  {block:'effort',c:'var(--effort)',q:"Récupération et économie de course chez l'enfant :",
+   o:["Il récupère plus vite après un effort aérobie","Sa fréquence cardiaque revient plus vite au repos","Son ajustement de la VO₂ en début d'effort est plus rapide","Son économie de course est meilleure que celle de l'adulte"],a:[0,1,2],
+   e:"L'économie de course de l'enfant est MOINS bonne (notamment à cause d'une fréquence de foulées élevée)."},
+  {block:'compo',c:'var(--body-c)',q:"Morphologie et somatotype :",
+   o:["La morphologie dépend de la musculature, de la stature et de la masse grasse","Le somatotype de Sheldon a 3 composantes notées de 1 à 7","Chaque individu possède les trois composantes à des degrés divers","Un individu n'appartient qu'à une seule des trois catégories"],a:[0,1,2],
+   e:"Chacun combine endomorphie, mésomorphie et ectomorphie à des degrés variables (ex. 7-1-1)."},
+  {block:'compo',c:'var(--body-c)',q:"La densitométrie :",
+   o:["Elle repose sur la densité D = masse / volume","La pesée hydrostatique applique le principe d'Archimède","La pléthysmographie applique la loi de Boyle-Mariotte","C'est une méthode de terrain simple et rapide"],a:[0,1,2],
+   e:"La densitométrie est une méthode de LABORATOIRE (référence) ; sur le terrain on utilise les plis cutanés."},
+  {block:'compo',c:'var(--body-c)',q:"L'impédancemétrie :",
+   o:["Elle repose sur la conduction d'un courant à travers le corps","Le tissu adipeux conduit mal le courant","La masse maigre, riche en eau, conduit bien le courant","Le tissu adipeux est un excellent conducteur électrique"],a:[0,1,2],
+   e:"Le gras est un MAUVAIS conducteur ; ce contraste avec la masse maigre (eau) permet d'estimer le % de gras."},
+  {block:'compo',c:'var(--body-c)',q:"La méthode de Jones & Pearson (1969) :",
+   o:["Elle estime le volume des membres inférieurs","Le membre est modélisé comme une somme de troncs de cône","Le volume est exprimé en litres (corrigé par les plis cutanés)","Le résultat est exprimé directement en kilogrammes de muscle"],a:[0,1,2],
+   e:"Le volume est exprimé en litres (muscle + os), corrigé par les plis cutanés — pas directement en kg."},
+  {block:'compo',c:'var(--body-c)',q:"Composition corporelle et performance :",
+   o:["La masse maigre est un atout pour la force et la puissance","Un excès de masse grasse pénalise le sprint et les sauts","Pour un coureur de fond, du poids (même maigre) en plus devient un handicap","Plus la masse grasse est élevée, meilleure est la performance d'endurance"],a:[0,1,2],
+   e:"Une faible masse grasse est généralement favorable ; en endurance, tout poids à porter en plus est un handicap."}
+];
+
+QCM_SETS.F=[
+  {block:'grow',c:'var(--grow)',q:"La vitamine D :",
+   o:["Elle aide à fixer le calcium sur l'os","Elle est fabriquée par la peau sous l'action des UV","On l'appelle aussi vitamine antirachitique","Sa carence n'a aucune conséquence sur le squelette"],a:[0,1,2],
+   e:"Une carence en vitamine D provoque un rachitisme (mauvaise minéralisation osseuse)."},
+  {block:'grow',c:'var(--grow)',q:"Le cortisol et la croissance :",
+   o:["Le cortisol n'est pas nécessaire à la croissance","En excès, il ralentit la croissance","C'est un glucocorticoïde","Plus il y a de cortisol, plus l'enfant grandit vite"],a:[0,1,2],
+   e:"Le cortisol (glucocorticoïde) n'est pas nécessaire à la croissance et, en excès, il la freine."},
+  {block:'grow',c:'var(--grow)',q:"Les lois pubertaires (Godin) :",
+   o:["Avant la puberté, la croissance est surtout osseuse et en hauteur","Avant la puberté, elle prédomine aux membres inférieurs","Après la puberté, elle devient surtout musculaire et au tronc","Après la puberté, elle prédomine encore aux membres inférieurs"],a:[0,1,2],
+   e:"Lois pubertaires de Godin : avant = osseuse / hauteur / membres inférieurs ; après = musculaire / tronc."},
+  {block:'grow',c:'var(--grow)',q:"Les courbes de croissance :",
+   o:["Les courbes du carnet de santé sont celles de Sempé","La position se lit en percentiles (ou en déviations standards)","Entre le 3e et le 97e percentile se trouve 95 % de la population","Se situer au 50e percentile traduit une croissance anormale"],a:[0,1,2],
+   e:"Le 50e percentile est la médiane : c'est parfaitement normal. La zone normale va du 3e au 97e percentile."},
+  {block:'grow',c:'var(--grow)',q:"Le pic de croissance pubertaire :",
+   o:["Il survient vers 12 ans chez les filles","Il survient vers 14 ans chez les garçons","Les filles ont environ 2 ans d'avance sur les garçons","Environ 50 % de la taille adulte est gagnée pendant la puberté"],a:[0,1,2],
+   e:"Environ 20 % seulement de la taille définitive est acquise pendant la puberté ; le pic est plus précoce chez les filles."},
+  {block:'effort',c:'var(--effort)',q:"La cascade du premier seuil (SV1) :",
+   o:["L'accumulation d'ions H⁺ est tamponnée par le bicarbonate","Cette réaction libère du CO₂ supplémentaire","L'excès de CO₂ stimule la ventilation","Le SV1 traduit l'effondrement total du pouvoir tampon"],a:[0,1,2],
+   e:"L'insuffisance du pouvoir tampon, c'est le SV2 (décompensation de l'acidose), pas le SV1."},
+  {block:'effort',c:'var(--effort)',q:"Les seuils chez l'enfant :",
+   o:["Ils se situent à un % de VO₂max plus élevé que chez l'adulte","Il peut travailler à intensité élevée sans produire beaucoup de lactate","Sa lactatémie maximale est plus basse que chez l'adulte","À intensité élevée, il produit autant de lactate que l'adulte"],a:[0,1,2],
+   e:"Grâce à des seuils placés plus haut et une glycolyse limitée, l'enfant produit moins de lactate que l'adulte."},
+  {block:'effort',c:'var(--effort)',q:"Définitions et ordre des seuils :",
+   o:["Le SV1 est le seuil de l'endurance aérobie (~2 mmol/L)","Le SV2 est le seuil de la puissance aérobie (~4 mmol/L)","Le SV2 correspond à la décompensation de l'acidose","Le SV1 se situe à une intensité plus élevée que le SV2"],a:[0,1,2],
+   e:"SV1 < SV2 en intensité : SV1 (endurance, ~2 mmol/L) puis SV2 (puissance, ~4 mmol/L)."},
+  {block:'effort',c:'var(--effort)',q:"La force au cours de la croissance :",
+   o:["Elle augmente avec la masse musculaire et l'âge","Elle progresse fortement à la puberté chez le garçon (hormones)","Les gestes rapides et précis dépendent de la maturation nerveuse (myélinisation)","La force ne dépend pas du tout du système nerveux"],a:[0,1,2],
+   e:"La force et les gestes rapides dépendent aussi de la maturation du système nerveux (myélinisation), pas seulement du muscle."},
+  {block:'effort',c:'var(--effort)',q:"« L'enfant n'est pas un adulte en miniature » :",
+   o:["L'exercice stimule l'axe somatotrope (GH, IGF-1)","On développe son endurance « de la puissance vers la capacité »","L'ajustement de la VO₂ et la récupération sont plus rapides chez l'enfant","L'enfant fonctionne exactement comme un adulte en plus petit"],a:[0,1,2],
+   e:"Chaque stade de développement est spécifique : l'enfant n'est pas un simple adulte réduit."},
+  {block:'compo',c:'var(--body-c)',q:"Les composantes du somatotype de Sheldon :",
+   o:["L'endomorphie = rondeur / masse grasse","La mésomorphie = muscle et ossature","L'ectomorphie = minceur / type longiligne","Un somatotype 7-1-1 indique une mésomorphie extrême"],a:[0,1,2],
+   e:"Le premier chiffre note l'endomorphie : 7-1-1 = endomorphie extrême (très rond), pas mésomorphie."},
+  {block:'compo',c:'var(--body-c)',q:"Comment se détermine le somatotype :",
+   o:["On part de photographies prises sous 3 angles","On complète par des mesures et des tables de référence","Chaque composante est notée de 1 à 7","Il se détermine par une simple prise de sang"],a:[0,1,2],
+   e:"Le somatotype s'établit à partir de photos (3 angles), de mesures et de tables — pas par prise de sang."},
+  {block:'compo',c:'var(--body-c)',q:"Pesée hydrostatique et pléthysmographie :",
+   o:["La pesée hydrostatique mesure le volume du corps (principe d'Archimède)","La pléthysmographie mesure le volume (loi de Boyle-Mariotte)","Ces méthodes servent à calculer la densité du corps","Elles donnent directement le % de masse grasse sans calcul"],a:[0,1,2],
+   e:"Elles donnent le VOLUME (donc la densité) ; il faut ensuite la formule de Siri pour obtenir le % de gras."},
+  {block:'compo',c:'var(--body-c)',q:"L'IMC et ses limites :",
+   o:["L'IMC s'exprime en kg/m²","Entre 18,5 et 24,9, il est considéré comme normal","Entre 25 et 29,9, on parle de surpoids","Un IMC ≥ 25 prouve toujours un excès de graisse"],a:[0,1,2],
+   e:"L'IMC ne distingue pas gras et muscle : un sportif musclé peut dépasser 25 sans excès de graisse."},
+  {block:'compo',c:'var(--body-c)',q:"Le tissu adipeux :",
+   o:["Le stockage se fait surtout par augmentation du volume des cellules adipeuses","Le tissu adipeux sous-cutané est représentatif de la masse grasse totale","À maturité, le taux de graisse est plus élevé chez les filles que chez les garçons","Le tissu adipeux conduit très bien le courant électrique"],a:[0,1,2],
+   e:"Le tissu adipeux conduit MAL le courant (base de l'impédancemétrie) ; le stockage se fait surtout par hypertrophie des adipocytes."}
+];
+
+let QUESTIONS=QCM_SETS.A;
+let currentSet='A';
+let recorded=false;
+const list=document.getElementById('qcm-list');
+const scoreEl=document.getElementById('score');
+const totalEl=document.getElementById('total');
+totalEl.textContent=QUESTIONS.length;
+const state={}; // index -> validated bool
+
+function shuffle(a){const r=a.slice();for(let i=r.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[r[i],r[j]]=[r[j],r[i]];}return r;}
+
+function render(){
+  list.innerHTML='';
+  QUESTIONS.forEach((Q,i)=>{
+    const order=shuffle(Q.o.map((_,k)=>k));
+    const card=document.createElement('div');card.className='q';
+    const opts=order.map(orig=>`<label class="opt" data-i="${i}" data-orig="${orig}">
+        <input type="checkbox" data-i="${i}" data-orig="${orig}"><span>${Q.o[orig]}</span></label>`).join('');
+    card.innerHTML=`
+      <div class="q-head">
+        <div class="q-num"><span class="dot" style="background:${Q.c}"></span>Question ${i+1} · plusieurs réponses</div>
+        <div class="q-text">${Q.q}</div>
+      </div>
+      <div class="opts">${opts}</div>
+      <div class="q-foot">
+        <button class="btn" data-check="${i}">Valider</button>
+        <div class="verdict" id="v${i}"></div>
+      </div>`;
+    list.appendChild(card);
+  });
+  scoreEl.textContent=0;
+  recorded=false;
+}
+render();
+
+list.addEventListener('click',e=>{
+  const b=e.target.closest('[data-check]');
+  if(!b)return;
+  const i=+b.dataset.check;
+  if(state[i])return; // already validated
+  const picks=[...list.querySelectorAll(`input[data-i="${i}"]`)].filter(c=>c.checked).map(c=>+c.dataset.orig);
+  const ans=QUESTIONS[i].a;
+  const correct = picks.length===ans.length && picks.every(p=>ans.includes(p));
+  // paint options
+  list.querySelectorAll(`.opt[data-i="${i}"]`).forEach(opt=>{
+    const j=+opt.dataset.orig;const isAns=ans.includes(j);const picked=opt.querySelector('input').checked;
+    opt.querySelector('input').disabled=true;
+    if(isAns&&picked)opt.classList.add('right');
+    else if(!isAns&&picked)opt.classList.add('wrongpick');
+    else if(isAns&&!picked)opt.classList.add('miss');
+  });
+  const v=document.getElementById('v'+i);
+  v.className='verdict show '+(correct?'ok':'no');
+  v.innerHTML=(correct?'✓ Tout bon — 1 point':'✗ 0 point : tout-ou-rien, il manquait ou il y avait une erreur')
+    +`<div class="explain">${QUESTIONS[i].e}</div>`;
+  b.disabled=true;state[i]=correct;
+  let s=0;Object.values(state).forEach(x=>{if(x)s++});scoreEl.textContent=s;
+  maybeRecord(s);
+});
+
+document.getElementById('reset').addEventListener('click',()=>{
+  for(const k in state)delete state[k];
+  render();window.scrollTo({top:0,behavior:'smooth'});
+});
+
+const setBtns=[...document.querySelectorAll('.setbtn')];
+setBtns.forEach(btn=>btn.addEventListener('click',()=>{
+  setBtns.forEach(x=>x.setAttribute('aria-current',x===btn));
+  currentSet=btn.dataset.set;
+  QUESTIONS=QCM_SETS[currentSet];
+  totalEl.textContent=QUESTIONS.length;
+  for(const k in state)delete state[k];
+  render();
+}));
+
+/* ---------- historique & progression ---------- */
+const HKEY='staps-qcm-history-v1';
+function loadHist(){try{return JSON.parse(localStorage.getItem(HKEY))||[];}catch(e){return [];}}
+function saveHist(arr){try{localStorage.setItem(HKEY,JSON.stringify(arr));}catch(e){}}
+
+function maybeRecord(score){
+  if(recorded)return;
+  const total=QUESTIONS.length;
+  if(Object.keys(state).length<total)return;   // série pas encore terminée
+  recorded=true;
+  const arr=loadHist();
+  arr.push({t:Date.now(),set:currentSet,score:score,total:total});
+  saveHist(arr);
+  renderHist();
+  document.getElementById('histbox').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function pctClass(p){return p>=80?'good':p>=50?'mid':'low';}
+
+function renderHist(){
+  const arr=loadHist();
+  const empty=document.getElementById('hist-empty');
+  const card=document.getElementById('hist-chartcard');
+  const statsEl=document.getElementById('hist-stats');
+  const listEl=document.getElementById('hist-list');
+  const clearWrap=document.getElementById('hist-clearwrap');
+  if(!arr.length){
+    empty.style.display='block';card.style.display='none';statsEl.style.display='none';
+    listEl.innerHTML='';clearWrap.style.display='none';return;
+  }
+  empty.style.display='none';card.style.display='block';clearWrap.style.display='block';
+
+  // stats
+  const pcts=arr.map(a=>Math.round(a.score/a.total*100));
+  const best=Math.max(...pcts);
+  const last=pcts[pcts.length-1];
+  statsEl.style.display='flex';
+  statsEl.innerHTML=
+    `<span class="chip">${arr.length} essai${arr.length>1?'s':''}</span>`+
+    `<span class="chip">Dernier · ${last}%</span>`+
+    `<span class="chip">Meilleur · ${best}%</span>`;
+
+  // chart (SVG line)
+  const W=640,H=240,padL=42,padR=16,padT=18,padB=34;
+  const n=pcts.length;
+  const xOf=i=>n===1?(padL+(W-padL-padR)/2):padL+(W-padL-padR)*i/(n-1);
+  const yOf=p=>padT+(H-padT-padB)*(1-p/100);
+  let grid='';
+  [0,25,50,75,100].forEach(g=>{const y=yOf(g);grid+=
+    `<line x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}" stroke="var(--line)" stroke-width="1"/>`+
+    `<text x="${padL-6}" y="${y+4}" text-anchor="end" font-family="Space Mono,monospace" font-size="11" fill="var(--ink-soft)">${g}</text>`;});
+  let path='';arr.forEach((a,i)=>{const x=xOf(i),y=yOf(pcts[i]);path+=(i?'L':'M')+x.toFixed(1)+','+y.toFixed(1)+' ';});
+  const SETC={A:'var(--effort)',B:'var(--o2)',C:'var(--grow)',D:'var(--body-c)',E:'var(--ink-archive)',F:'var(--ink)'};
+  let pts='';arr.forEach((a,i)=>{const x=xOf(i),y=yOf(pcts[i]);const col=SETC[a.set]||'var(--ink)';
+    pts+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="5" fill="${col}"><title>Série ${a.set} · ${pcts[i]}%</title></circle>`+
+         `<text x="${x.toFixed(1)}" y="${(y-10).toFixed(1)}" text-anchor="middle" font-family="Space Mono,monospace" font-weight="700" font-size="11" fill="${col}">${a.set}</text>`;});
+  document.getElementById('hist-chart').innerHTML=
+    `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Courbe des scores en pourcentage au fil des essais">
+      ${grid}
+      <line x1="${padL}" y1="${padT}" x2="${padL}" y2="${H-padB}" stroke="var(--ink-soft)" stroke-width="2"/>
+      ${n>1?`<path d="${path}" fill="none" stroke="var(--ink)" stroke-width="2.5"/>`:''}
+      ${pts}
+    </svg>`;
+
+  // list (newest first)
+  listEl.innerHTML=arr.map((a,idx)=>{
+    const p=pcts[idx];
+    const prev=idx>0?pcts[idx-1]:null;
+    const d=new Date(a.t).toLocaleString('fr-FR',{day:'2-digit',month:'2-digit',year:'2-digit',hour:'2-digit',minute:'2-digit'});
+    let trend='';
+    if(prev!==null){const diff=p-prev;trend=diff>0?`<span class="hist-trend" style="color:var(--good)">▲ +${diff}</span>`:diff<0?`<span class="hist-trend" style="color:var(--bad)">▼ ${diff}</span>`:`<span class="hist-trend" style="color:var(--ink-soft)">= 0</span>`;}
+    return `<div class="hist-row">
+      <span class="hist-set" style="border-color:${SETC[a.set]};color:${SETC[a.set]};background:transparent">${a.set}</span>
+      <div><div class="hist-score">${a.score} / ${a.total}</div><div class="hist-when">${d}</div></div>
+      <span class="hist-pct ${pctClass(p)}">${p}%${trend}</span>
+    </div>`;
+  }).reverse().join('');
+}
+
+document.getElementById('hist-clear').addEventListener('click',()=>{
+  if(confirm('Effacer tout l’historique des essais ? Cette action est définitive.')){
+    localStorage.removeItem(HKEY);renderHist();
+  }
+});
+
+renderHist();
+</script>
