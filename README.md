@@ -10,10 +10,13 @@ sort.
 
 ## Ce qui a été changé pour la mise en ligne
 
-Cette copie est **générée** depuis la version privée par
-`scripts/build-public.mjs`, qui échoue plutôt que de publier s'il retrouve une
-des données retirées. L'original est fait pour une personne, et il en disait
-bien plus que son prénom :
+Cette copie est **générée** depuis la version privée par un script
+(`build-public.mjs`) qui échoue plutôt que de publier s'il retrouve une des
+données retirées. Ce script **n'est pas dans ce dépôt** et n'y sera pas : ses
+règles citent, côté « avant », exactement ce qu'elles effacent — le publier ici
+reviendrait à publier ce qu'il sert à retirer.
+
+L'original est fait pour une personne, et il en disait bien plus que son prénom :
 
 - le **prénom**, quatre fois, jusque dans la clé de stockage local ;
 - le **tiers-temps**, neuf fois — c'est un aménagement d'examen, donc une donnée
